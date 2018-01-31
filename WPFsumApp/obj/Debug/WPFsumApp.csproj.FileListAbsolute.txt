@@ -1,0 +1,15 @@
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\bin\Debug\WPFsumApp.exe.config
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\bin\Debug\WPFsumApp.exe
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\bin\Debug\WPFsumApp.pdb
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.csprojResolveAssemblyReference.cache
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\MainWindow.g.cs
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\App.g.cs
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp_MarkupCompile.cache
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp_MarkupCompile.lref
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\MainWindow.baml
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.g.resources
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.Properties.Resources.resources
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.csproj.GenerateResource.Cache
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.csproj.CoreCompileInputs.cache
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.exe
+c:\users\antalnagy\source\repos\WPFsumApp\WPFsumApp\obj\Debug\WPFsumApp.pdb
