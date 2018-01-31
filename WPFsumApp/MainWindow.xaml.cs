@@ -41,29 +41,81 @@ namespace WPFsumApp
 
         private void btnSumm_Click(object sender, RoutedEventArgs e)
         {
-            int intnumbersum = int.Parse(numberOne.Text)+int.Parse(numberOne.Text);
+            labelNoOp.Visibility = Visibility.Hidden;
 
-            numberSum.Text = intnumbersum.ToString();
+            int result = getCalcResult(int.Parse(numberOne.Text), int.Parse(numberTwo.Text));
+
+            numberSum.Text = result.ToString();
+
+            if (comboMathSymbol.SelectedIndex != -1)
+            {
+                ValuToDataGrid(int.Parse(numberOne.Text), comboMathSymbol.SelectionBoxItem.ToString(), int.Parse(numberTwo.Text), result);
+            }
 
             numberOne.Text = "0";
             numberTwo.Text = "0";
         }
 
+        //Get back the result of the selected operation
+        public int getCalcResult(int num1, int num2)
+        {
+            int result = 0;
+            switch (comboMathSymbol.SelectedIndex)
+            {
+                case 0:
+                    result = num1 + num2;
+                    break;
+                case 1:
+                    result = num1 - num2;
+                    break;
+                case 2:
+                    result = num1 * num2;
+                    break;
+                case 3:
+                    result = num1 / num2;
+                    break;
+                default:
+                    labelNoOp.Content = "You need select the math operation!!!";
+                    labelNoOp.Visibility = Visibility.Visible;
+                    break;
+            }
+
+            return result;
+        }
+
         private void numberOne_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            checkTextInputIsNumber(e);
+            checkTextInputIsNumber(e, labelError1);
         }
 
         private void numberTwo_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            checkTextInputIsNumber(e);
+            checkTextInputIsNumber(e, labelError2);
         }
 
-        public void checkTextInputIsNumber(TextCompositionEventArgs e)
+
+        public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
         {
-            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+
+            if(Regex.IsMatch(e.Text, "[^0-9]+"))
+            {
+                e.Handled = true;
+                errorMessage.Content = e.Text + ": is not number (0-9)";
+                errorMessage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                e.Handled = false;
+                errorMessage.Visibility = Visibility.Hidden;
+            }
+           
+            
         }
 
-       
+        public void ValuToDataGrid(int num1, string op ,int num2, int result)
+        {
+            dGridHistory.Items.Add(new Operation { Id = dGridHistory.Items.Count+1, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = DateTime.Now});
+        }
+
     }
 }
