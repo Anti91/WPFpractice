@@ -7,25 +7,21 @@ using System.Threading.Tasks;
 namespace WPFsumApp
 {
     public class Operation
-    {
+    {        
         private int id;
-
         private int firstnumber;
         private string op;
         private int secondnumber;
         private int result;
-        private DateTime timestamp;
-
+        private string timestamp;
 
         public Operation()
         {
 
         }
-
         public int Id {
             get { return id; }
             set { id = value; }
-
         }
         public int Firstnumber {
             get { return firstnumber; }
@@ -43,7 +39,7 @@ namespace WPFsumApp
             get { return result; }
             set { result = value; }
         }
-        public DateTime Timestamp {
+        public string Timestamp {
             get { return timestamp; }
             set { timestamp = value; }
         }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SQLite;
 
 namespace WPFsumApp
 {
@@ -21,6 +22,7 @@ namespace WPFsumApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        TestSQLiteDB databaseObject;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +34,14 @@ namespace WPFsumApp
                                  " in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur " +
                                  "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
                                  "mollit anim id est laborum.";
+
+            databaseObject = new TestSQLiteDB();
+
+
+            foreach (var item in databaseObject.SelectOpList(databaseObject))
+            {
+                dGridHistory.Items.Add(item);
+            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -43,21 +53,20 @@ namespace WPFsumApp
         {
             labelNoOp.Visibility = Visibility.Hidden;
 
-            int result = getCalcResult(int.Parse(numberOne.Text), int.Parse(numberTwo.Text));
+            int result = getCalcResult(int.Parse(numberOne.Text), int.Parse(numberTwo.Text), comboMathSymbol.SelectedIndex);
 
             numberSum.Text = result.ToString();
 
             if (comboMathSymbol.SelectedIndex != -1)
             {
-                ValuToDataGrid(int.Parse(numberOne.Text), comboMathSymbol.SelectionBoxItem.ToString(), int.Parse(numberTwo.Text), result);
+                ValueToDataGrid(int.Parse(numberOne.Text), comboMathSymbol.SelectionBoxItem.ToString(), int.Parse(numberTwo.Text), result);
             }
-
             numberOne.Text = "0";
             numberTwo.Text = "0";
         }
 
-        //Get back the result of the selected operation
-        public int getCalcResult(int num1, int num2)
+        //Return the result of the selected operation
+        public int getCalcResult(int num1, int num2,int opIndex)
         {
             int result = 0;
             switch (comboMathSymbol.SelectedIndex)
@@ -79,7 +88,6 @@ namespace WPFsumApp
                     labelNoOp.Visibility = Visibility.Visible;
                     break;
             }
-
             return result;
         }
 
@@ -93,10 +101,8 @@ namespace WPFsumApp
             checkTextInputIsNumber(e, labelError2);
         }
 
-
         public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
         {
-
             if(Regex.IsMatch(e.Text, "[^0-9]+"))
             {
                 e.Handled = true;
@@ -107,15 +113,23 @@ namespace WPFsumApp
             {
                 e.Handled = false;
                 errorMessage.Visibility = Visibility.Hidden;
-            }
-           
-            
+            }   
         }
-
-        public void ValuToDataGrid(int num1, string op ,int num2, int result)
+        //Add Row to "dGridHistory" Datagrid
+        public void ValueToDataGrid(int num1, string op ,int num2, int result)
         {
-            dGridHistory.Items.Add(new Operation { Id = dGridHistory.Items.Count+1, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = DateTime.Now});
+            int id = dGridHistory.Items.Count + 1;
+            string timestamp = DateTime.Now.ToString();
+
+            dGridHistory.Items.Add(new Operation { Id = id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp });
+            databaseObject.InsertNewOp(databaseObject, id, num1, op, num2, result, timestamp.ToString());
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            databaseObject.DeleteAllOp(databaseObject);
+
+            dGridHistory.Items.Clear();
+        }
     }
 }
