@@ -10,14 +10,14 @@ namespace WPFsumApp.ViewModel
     {
 
 
-        public OperationViewModel OperationViewModelTest
+        public OperationViewModel OperationViewModel
         {
             get;
             set;
         }
         public MainWindowViewModel()
         {
-            OperationViewModelTest  = new OperationViewModel();
+            OperationViewModel  = new OperationViewModel();
         }
     }
 }
