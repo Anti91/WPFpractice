@@ -3,41 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views ="clr-namespace:WPFsumApp.View"
+        xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModels"
         xmlns:local="clr-namespace:WPFsumApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="412.838" Width="525">
+        Title="MainWindow" Height="420" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Name="mainViewTemplate" DataType="{x:Type viewsmodels:OperationViewModel}">
+            <views:MainView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid Margin="0,0,0,2">
-        <TextBox Name="numberOne"  HorizontalAlignment="Left" Height="23" Margin="18,153,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" PreviewTextInput="numberOne_PreviewTextInput"/>
-        <TextBox Name="numberTwo" HorizontalAlignment="Left" Height="23" Margin="197,153,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" PreviewTextInput="numberTwo_PreviewTextInput"/>
-        <TextBox Name="numberSum" HorizontalAlignment="Left" Height="23" Margin="378,153,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Label Name="labelEqual" Content="=" HorizontalAlignment="Left" Margin="333,153,0,0" VerticalAlignment="Top"/>
-        <Button Name="btnSumm" Content="Sum" HorizontalAlignment="Left" Margin="422,191,0,0" VerticalAlignment="Top" Width="75" Click="btnSumm_Click"/>
-        <Button Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="422,17,0,0" VerticalAlignment="Top" Width="75" Click="btnExit_Click"/>
-
-        <TextBlock ScrollViewer.VerticalScrollBarVisibility="Auto"  x:Name="tesxtBlockIpsum" HorizontalAlignment="Left" Margin="17,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="138" Width="382"><Run Text="TextBlock"/></TextBlock>
-        <Label Name="labelError1" Content="Label" HorizontalAlignment="Left" Margin="17,216,0,0" VerticalAlignment="Top" Visibility="Hidden" Foreground="#FFF70606"/>
-        <Label Name="labelError2" Content="Label" HorizontalAlignment="Left" Margin="196,217,0,0" VerticalAlignment="Top" Visibility="Hidden" Foreground="#FFF70606"/>
-        <ComboBox Name="comboMathSymbol" HorizontalAlignment="Left" Margin="149,153,0,0" VerticalAlignment="Top" Width="37">
-            <ComboBoxItem>+</ComboBoxItem>
-            <ComboBoxItem>-</ComboBoxItem>
-            <ComboBoxItem>*</ComboBoxItem>
-            <ComboBoxItem>/</ComboBoxItem>
-        </ComboBox>
-        <Label Name="labelNoOp" Content="Label" HorizontalAlignment="Left" Margin="17,167,0,0" VerticalAlignment="Top" Visibility="Hidden" Foreground="#FFF70606"/>
-        <DataGrid Name="dGridHistory" HorizontalAlignment="Left" Height="116" Margin="17,225,0,0" VerticalAlignment="Top" Width="480">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="First Number" Binding="{Binding Firstnumber}"/>
-                <DataGridTextColumn Header="Op" Binding="{Binding Op}"/>
-                <DataGridTextColumn Header="Second Number" Binding="{Binding Secondnumber}"/>
-                <DataGridTextColumn Header="Result" Binding="{Binding Result}"/>
-                <DataGridTextColumn Header="Timestamp" Width="*" Binding="{Binding Timestamp}"/>
-            </DataGrid.Columns>
-
-
-        </DataGrid>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="422,350,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
-
+        <!--
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        -->
+        <ContentControl Content="{Binding}" />
     </Grid>
+    
 </Window>
