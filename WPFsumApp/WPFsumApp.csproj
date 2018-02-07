@@ -73,9 +73,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="TestSQLiteDB.cs" />
-    <Compile Include="ViewModels\OperationViewModel.cs" />
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\OperationViewModel.cs" />
+    <Compile Include="View\OperationView.xaml.cs">
+      <DependentUpon>OperationView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -89,7 +90,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\MainView.xaml">
+    <Page Include="View\OperationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

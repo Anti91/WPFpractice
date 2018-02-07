@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
-using WPFsumApp.ViewModels;
+using WPFsumApp.ViewModel;
 
 namespace WPFsumApp
 {
@@ -23,11 +23,13 @@ namespace WPFsumApp
     /// </summary>
     public partial class MainWindow : Window
     {
-      
+       
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new OperationViewModel();
+
+
         }
 
     }

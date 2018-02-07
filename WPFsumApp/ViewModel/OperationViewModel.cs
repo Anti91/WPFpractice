@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFsumApp.ViewModels
+namespace WPFsumApp.ViewModel
 {
     public class OperationViewModel
     {
-
+      
         public List<string> OperationCollection
         {
             get;

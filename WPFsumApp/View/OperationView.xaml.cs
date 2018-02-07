@@ -20,11 +20,11 @@ namespace WPFsumApp.View
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class OperationView : UserControl
     {
  
         TestSQLiteDB databaseObject;
-        public MainView()
+        public OperationView()
         {
             InitializeComponent();
 

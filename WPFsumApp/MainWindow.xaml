@@ -4,22 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views ="clr-namespace:WPFsumApp.View"
-        xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModels"
+        xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModel"
         xmlns:local="clr-namespace:WPFsumApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="420" Width="525">
     <Window.Resources>
-        <DataTemplate x:Name="mainViewTemplate" DataType="{x:Type viewsmodels:OperationViewModel}">
-            <views:MainView DataContext="{Binding}"/>
+        <DataTemplate x:Name="mainWindowViewTemplate" DataType="{x:Type viewsmodels:OperationViewModel}">
+            <views:OperationView />
         </DataTemplate>
     </Window.Resources>
     <Grid Margin="0,0,0,2">
+
+        <ContentControl Content="{Binding OperationViewModelTest}" />
         <!--
         <Grid.ColumnDefinitions>
             
         </Grid.ColumnDefinitions>
         -->
-        <ContentControl Content="{Binding}" />
+        
     </Grid>
     
 </Window>
