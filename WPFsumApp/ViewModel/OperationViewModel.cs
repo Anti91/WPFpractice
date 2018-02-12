@@ -40,7 +40,7 @@ namespace WPFsumApp.ViewModel
             _databaseObject = new TestSQLiteDB();
 
             //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
-            _operationList = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
+            _operationList = new ObservableCollection<Operation>(_databaseObject.SelectOpList(_databaseObject));
             
         }
 
