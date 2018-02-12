@@ -14,13 +14,11 @@ namespace WPFsumApp.ViewModel
     {
         private string _boundNum1;
         private string _boundNum2;
-        private string _loremIpsumText;
-        private List<string> _operationCollection;
-        private ObservableCollection<Operation> _operationList;
-        private TestSQLiteDB _databaseObject;
+
+
         public OperationViewModel()
         {
-            _operationCollection = new List<string>()
+            OperationCollection = new List<string>()
             {
                 "+",
                 "-",
@@ -28,7 +26,7 @@ namespace WPFsumApp.ViewModel
                 "/"
             };
 
-            _loremIpsumText =
+            LoremIpsumText =
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                                  "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
                                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
@@ -37,32 +35,32 @@ namespace WPFsumApp.ViewModel
                                  "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
                                  "mollit anim id est laborum.";
 
-            _databaseObject = new TestSQLiteDB();
+            DatabaseObject = new TestSQLiteDB();
 
             //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
-            _operationList = new ObservableCollection<Operation>(_databaseObject.SelectOpList(_databaseObject));
+            OperationList = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
             
         }
 
         public TestSQLiteDB DatabaseObject
         {
-            get { return _databaseObject; }
-            set { _databaseObject = value; }
+            get;
+            set;
         }
         public List<string> OperationCollection
         {
-            get { return _operationCollection; }
-            set { _operationCollection = value; }
+            get;
+            set;
         }
         public ObservableCollection<Operation> OperationList
         {
-            get { return _operationList; }
-            set { _operationList = value; }
+            get;
+            set;
         }
         public string LoremIpsumText
         {
-            get { return _loremIpsumText; }
-            set { _loremIpsumText = value; }
+            get;
+            set;
         }
 
         public string BoundNum1
@@ -126,11 +124,11 @@ namespace WPFsumApp.ViewModel
         //Add Row to OperationList
         public void ValueToDataGrid(int num1, string op, int num2, int result)
         {
-            int id = _operationList.Count();
+            int id = OperationList.Count();
             string timestamp = DateTime.Now.ToString();
             Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
                       
-            _operationList.Add(addedOperation);
+            OperationList.Add(addedOperation);
 
 
             DatabaseObject.InsertNewOp(DatabaseObject, id, num1, op, num2, result, timestamp.ToString());
@@ -170,7 +168,7 @@ namespace WPFsumApp.ViewModel
         public void CleanOperationList()
         {
             DatabaseObject.DeleteAllOp(DatabaseObject);
-            _operationList.Clear();
+            OperationList.Clear();
 
         }
     }
