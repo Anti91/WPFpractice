@@ -28,19 +28,17 @@ namespace WPFsumApp.View
         public OperationView()
         {
             InitializeComponent();
-            
+
+            DataContext = _operationViewModel;
+
             DataContextChanged += OnDataContextChanged;
 
-            
         }
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (this.DataContext != null)
-            {
-                databaseObject = ((OperationViewModel)(this.DataContext)).DatabaseObject;
-
-                DataContext = _operationViewModel;
-                
+            {              
+                databaseObject = ((OperationViewModel)(this.DataContext)).DatabaseObject;          
             }
         }
         private void btnExit_Click(object sender, RoutedEventArgs e)
