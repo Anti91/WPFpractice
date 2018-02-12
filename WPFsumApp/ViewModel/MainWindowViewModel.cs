@@ -2,8 +2,6 @@
 {
     public class MainWindowViewModel
     {
-
-
         public OperationViewModel OperationViewModel
         {
             get;

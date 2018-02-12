@@ -15,10 +15,9 @@ namespace WPFsumApp.ViewModel
         private string _boundNum1;
         private string _boundNum2;
 
-
         public OperationViewModel()
         {
-            OperationCollection = new List<string>()
+            OperationSymbolList = new List<string>()
             {
                 "+",
                 "-",
@@ -38,7 +37,7 @@ namespace WPFsumApp.ViewModel
             DatabaseObject = new TestSQLiteDB();
 
             //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
-            OperationList = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
+            OperationCollection = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
             
         }
 
@@ -47,20 +46,17 @@ namespace WPFsumApp.ViewModel
             get;
             set;
         }
-        public List<string> OperationCollection
+        public List<string> OperationSymbolList
         {
             get;
-            set;
         }
-        public ObservableCollection<Operation> OperationList
+        public ObservableCollection<Operation> OperationCollection
         {
             get;
-            set;
         }
         public string LoremIpsumText
         {
             get;
-            set;
         }
 
         public string BoundNum1
@@ -124,11 +120,11 @@ namespace WPFsumApp.ViewModel
         //Add Row to OperationList
         public void ValueToDataGrid(int num1, string op, int num2, int result)
         {
-            int id = OperationList.Count();
+            int id = OperationCollection.Count();
             string timestamp = DateTime.Now.ToString();
             Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
-                      
-            OperationList.Add(addedOperation);
+
+            OperationCollection.Add(addedOperation);
 
 
             DatabaseObject.InsertNewOp(DatabaseObject, id, num1, op, num2, result, timestamp.ToString());
@@ -168,7 +164,7 @@ namespace WPFsumApp.ViewModel
         public void CleanOperationList()
         {
             DatabaseObject.DeleteAllOp(DatabaseObject);
-            OperationList.Clear();
+            OperationCollection.Clear();
 
         }
     }
