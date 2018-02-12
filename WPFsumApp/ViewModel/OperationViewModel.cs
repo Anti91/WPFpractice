@@ -146,11 +146,11 @@ namespace WPFsumApp.ViewModel
 
         public void ValueToDataGrid(int num1, string op, int num2, int result)
         {
-            int id = 1;
+            int id = _operationList.Count();
             string timestamp = DateTime.Now.ToString();
-            Operation addedOperation = new Operation { Id = id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
+            Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
           
-
+            
             _operationList.Add(addedOperation);
             NotifyCollectionChangedEventArgs e  = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, _operationList);
             OnNotifyCollectionChanged(e);
@@ -187,6 +187,13 @@ namespace WPFsumApp.ViewModel
                     break;
             }
             return result;
+        }
+
+        public void CleanOperationList()
+        {
+            DatabaseObject.DeleteAllOp(DatabaseObject);
+            _operationList.Clear();
+
         }
     }
 }

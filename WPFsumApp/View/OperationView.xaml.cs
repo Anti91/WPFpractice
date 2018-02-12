@@ -29,10 +29,10 @@ namespace WPFsumApp.View
         {
             InitializeComponent();
 
-            DataContext = _operationViewModel;
+            
 
             DataContextChanged += OnDataContextChanged;
-
+            DataContext = _operationViewModel;
         }
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -84,10 +84,8 @@ namespace WPFsumApp.View
        
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            databaseObject.DeleteAllOp(databaseObject);
-
-            //dGridHistory.Items.Clear();
+        {         
+            _operationViewModel.CleanOperationList();           
         }
     }
 }
