@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows;
 using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace WPFsumApp.ViewModel
 {
@@ -92,9 +89,8 @@ namespace WPFsumApp.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-  
 
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -103,6 +99,7 @@ namespace WPFsumApp.ViewModel
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+
 
         public ObservableCollection<Operation> OperationList
         {
@@ -113,10 +110,7 @@ namespace WPFsumApp.ViewModel
             }
 
         }
-
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-
-
         private void OnNotifyCollectionChanged( NotifyCollectionChangedEventArgs args)
         {
             if (this.CollectionChanged != null)
@@ -125,7 +119,7 @@ namespace WPFsumApp.ViewModel
            }
         }
 
-
+        //Check Imput Char is Number and show errorlabel
         public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
         {
             if (Regex.IsMatch(e.Text, "[^0-9]+"))
@@ -141,26 +135,22 @@ namespace WPFsumApp.ViewModel
             }
         }
 
-
-       
-
+        //Add Row to OperationList
         public void ValueToDataGrid(int num1, string op, int num2, int result)
         {
             int id = _operationList.Count();
             string timestamp = DateTime.Now.ToString();
             Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
-          
-            
+                      
             _operationList.Add(addedOperation);
             NotifyCollectionChangedEventArgs e  = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, _operationList);
             OnNotifyCollectionChanged(e);
 
-            // dGridHistory.Items.Add(new Operation { Id = id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp });
             DatabaseObject.InsertNewOp(DatabaseObject, id, num1, op, num2, result, timestamp.ToString());
         }
 
-       
-         public int GetCalcResult(int num1, int num2, int opIndex, Label labelNoOp)
+        //Return the result of the selected operation
+        public int GetCalcResult(int num1, int num2, int opIndex, Label labelNoOp)
         {
             foreach (var item in DatabaseObject.SelectOpList(DatabaseObject))
             {
@@ -189,6 +179,7 @@ namespace WPFsumApp.ViewModel
             return result;
         }
 
+        //Delete all Operation from DB and Clear OperationList Items
         public void CleanOperationList()
         {
             DatabaseObject.DeleteAllOp(DatabaseObject);

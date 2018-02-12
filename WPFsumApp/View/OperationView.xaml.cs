@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SQLite;
 using WPFsumApp.ViewModel;
 
 namespace WPFsumApp.View
@@ -28,9 +15,6 @@ namespace WPFsumApp.View
         public OperationView()
         {
             InitializeComponent();
-
-            
-
             DataContextChanged += OnDataContextChanged;
             DataContext = _operationViewModel;
         }
@@ -61,14 +45,8 @@ namespace WPFsumApp.View
 
             _operationViewModel.BoundNum1 = "0";
             _operationViewModel.BoundNum2 = "0";
-
-           // numberOne.Text = "0";
-           // numberTwo.Text = "0";
         }
-
-        //Return the result of the selected operation
-       
-
+     
         private void numberOne_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             _operationViewModel.checkTextInputIsNumber(e, labelError1);
@@ -78,10 +56,6 @@ namespace WPFsumApp.View
         {
             _operationViewModel.checkTextInputIsNumber(e, labelError2);
         }
-
-       
-        //Add Row to "dGridHistory" Datagrid
-       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {         
