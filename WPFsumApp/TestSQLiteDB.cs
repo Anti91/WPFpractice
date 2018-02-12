@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace WPFsumApp
 {
-    class TestSQLiteDB
+    public class TestSQLiteDB
     {
         public SQLiteConnection myConnection;
 

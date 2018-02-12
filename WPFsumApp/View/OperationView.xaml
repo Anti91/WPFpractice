@@ -7,16 +7,9 @@
              xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/OperationResource.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid >
-        <TextBox Name="numberOne"  Margin="18,153,0,0"  Text="0" PreviewTextInput="numberOne_PreviewTextInput"/>
-        <TextBox Name="numberTwo"  Margin="197,153,0,0" Text="0" PreviewTextInput="numberTwo_PreviewTextInput"/>
+        <TextBox Name="numberOne"  Margin="18,153,0,0"  Text="{Binding Path=BoundNum1, Mode=TwoWay}" PreviewTextInput="numberOne_PreviewTextInput"/>
+        <TextBox Name="numberTwo"  Margin="197,153,0,0" Text="{Binding Path=BoundNum2, Mode=TwoWay}" PreviewTextInput="numberTwo_PreviewTextInput"/>
         <TextBox Name="numberSum"  Margin="378,153,0,0" Text="0" IsEnabled="False"/>
         
         <Label Name="labelEqual" Content="=" HorizontalAlignment="Left" Margin="333,153,0,0" />
@@ -33,15 +26,8 @@
 
         <ComboBox Name="comboMathSymbol" HorizontalAlignment="Left" Margin="149,153,0,0" VerticalAlignment="Top" Width="37" ItemsSource="{Binding OperationCollection}" />
 
-        <DataGrid Name="dGridHistory" HorizontalAlignment="Left" Height="116" Margin="17,225,0,0" VerticalAlignment="Top" Width="480">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="First Number" Binding="{Binding Firstnumber}"/>
-                <DataGridTextColumn Header="Op" Binding="{Binding Op}"/>
-                <DataGridTextColumn Header="Second Number" Binding="{Binding Secondnumber}"/>
-                <DataGridTextColumn Header="Result" Binding="{Binding Result}"/>
-                <DataGridTextColumn Header="Timestamp" Width="*" Binding="{Binding Timestamp}"/>
-            </DataGrid.Columns>
+        <DataGrid Name="dGridHistory" HorizontalAlignment="Left" Height="116" Margin="17,225,0,0" VerticalAlignment="Top" Width="480" ItemsSource="{Binding Path=OperationList, Mode=OneWay }" AutoGenerateColumns="True">
+           
         </DataGrid>
     </Grid>
 </UserControl>
