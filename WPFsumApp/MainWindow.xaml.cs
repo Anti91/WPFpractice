@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WPFsumApp.ViewModel;
 
 namespace WPFsumApp
 {
@@ -12,9 +11,7 @@ namespace WPFsumApp
 
         public MainWindow()
         {
-            InitializeComponent();
-            DataContext = new MainWindowViewModel();
-
+            InitializeComponent();          
         }
 
     }

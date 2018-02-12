@@ -14,11 +14,13 @@ namespace WPFsumApp.ViewModel
     {
         private string _boundNum1;
         private string _boundNum2;
+        private string _loremIpsumText;
+        private List<string> _operationCollection;
         private ObservableCollection<Operation> _operationList;
-        
+        private TestSQLiteDB _databaseObject;
         public OperationViewModel()
         {
-            OperationCollection = new List<string>()
+            _operationCollection = new List<string>()
             {
                 "+",
                 "-",
@@ -26,7 +28,7 @@ namespace WPFsumApp.ViewModel
                 "/"
             };
 
-            LoremIpsumText =
+            _loremIpsumText =
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                                  "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
                                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
@@ -35,7 +37,7 @@ namespace WPFsumApp.ViewModel
                                  "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
                                  "mollit anim id est laborum.";
 
-            DatabaseObject = new TestSQLiteDB();
+            _databaseObject = new TestSQLiteDB();
 
             //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
             _operationList = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
@@ -44,25 +46,23 @@ namespace WPFsumApp.ViewModel
 
         public TestSQLiteDB DatabaseObject
         {
-            get;
-            set;
+            get { return _databaseObject; }
+            set { _databaseObject = value; }
         }
         public List<string> OperationCollection
         {
-            get;
-            set;
+            get { return _operationCollection; }
+            set { _operationCollection = value; }
         }
         public ObservableCollection<Operation> OperationList
         {
-            get
-            {
-                return _operationList;
-            }
+            get { return _operationList; }
+            set { _operationList = value; }
         }
         public string LoremIpsumText
         {
-            get;
-            set;
+            get { return _loremIpsumText; }
+            set { _loremIpsumText = value; }
         }
 
         public string BoundNum1
