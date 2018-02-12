@@ -26,7 +26,7 @@
 
         <ComboBox Name="comboMathSymbol" HorizontalAlignment="Left" Margin="149,153,0,0" VerticalAlignment="Top" Width="37" ItemsSource="{Binding OperationCollection}" />
 
-        <DataGrid Name="dGridHistory" HorizontalAlignment="Left" Height="116" Margin="17,225,0,0" VerticalAlignment="Top" Width="480" ItemsSource="{Binding Path=OperationList, Mode=OneWay }" AutoGenerateColumns="True">
+        <DataGrid Name="dGridHistory" HorizontalAlignment="Left" Height="116" Margin="17,225,0,0" VerticalAlignment="Top" Width="480" ItemsSource="{Binding Path=OperationList, Mode=OneWay}" AutoGenerateColumns="True" CanUserAddRows="False" >
            
         </DataGrid>
     </Grid>
