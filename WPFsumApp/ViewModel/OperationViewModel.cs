@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -11,11 +10,12 @@ using System.Windows.Input;
 
 namespace WPFsumApp.ViewModel
 {
-    public class OperationViewModel : INotifyPropertyChanged, INotifyCollectionChanged
+    public class OperationViewModel : INotifyPropertyChanged  
     {
         private string _boundNum1;
         private string _boundNum2;
         private ObservableCollection<Operation> _operationList;
+        
         public OperationViewModel()
         {
             OperationCollection = new List<string>()
@@ -37,8 +37,9 @@ namespace WPFsumApp.ViewModel
 
             DatabaseObject = new TestSQLiteDB();
 
-            _operationList =new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
-
+            //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
+            _operationList = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
+            
         }
 
         public TestSQLiteDB DatabaseObject
@@ -51,7 +52,13 @@ namespace WPFsumApp.ViewModel
             get;
             set;
         }
-
+        public ObservableCollection<Operation> OperationList
+        {
+            get
+            {
+                return _operationList;
+            }
+        }
         public string LoremIpsumText
         {
             get;
@@ -100,25 +107,6 @@ namespace WPFsumApp.ViewModel
             }
         }
 
-
-        public ObservableCollection<Operation> OperationList
-        {
-            get
-            {
-
-                return _operationList;
-            }
-
-        }
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        private void OnNotifyCollectionChanged( NotifyCollectionChangedEventArgs args)
-        {
-            if (this.CollectionChanged != null)
-           {
-                this.CollectionChanged(this, args);
-           }
-        }
-
         //Check Imput Char is Number and show errorlabel
         public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
         {
@@ -143,8 +131,7 @@ namespace WPFsumApp.ViewModel
             Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
                       
             _operationList.Add(addedOperation);
-            NotifyCollectionChangedEventArgs e  = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, _operationList);
-            OnNotifyCollectionChanged(e);
+
 
             DatabaseObject.InsertNewOp(DatabaseObject, id, num1, op, num2, result, timestamp.ToString());
         }

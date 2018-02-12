@@ -11,20 +11,13 @@ namespace WPFsumApp.View
     public partial class OperationView : UserControl
     {
         OperationViewModel _operationViewModel = new OperationViewModel();
-        TestSQLiteDB databaseObject;
+       
         public OperationView()
         {
             InitializeComponent();
-            DataContextChanged += OnDataContextChanged;
-            DataContext = _operationViewModel;
+            DataContext = _operationViewModel;      
         }
-        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (this.DataContext != null)
-            {              
-                databaseObject = ((OperationViewModel)(this.DataContext)).DatabaseObject;          
-            }
-        }
+        
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
