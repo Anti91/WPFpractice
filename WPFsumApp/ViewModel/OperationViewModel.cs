@@ -168,22 +168,6 @@ namespace WPFsumApp.ViewModel
             }
         }
 
-        //Check Imput Char is Number and show errorlabel
-        //public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
-        //{
-        //    if (Regex.IsMatch(e.Text, "[^0-9]+"))
-        //    {
-        //        e.Handled = true;
-        //        errorMessage.Content = e.Text + ": is not number (0-9)";
-        //        errorMessage.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        e.Handled = false;
-        //        errorMessage.Visibility = Visibility.Hidden;
-        //    }
-        //}
-
         //Add Row to OperationList
         public void ValueToDataGrid(int num1, int num2, int result)
         {
@@ -215,8 +199,6 @@ namespace WPFsumApp.ViewModel
                     result = num1 / num2;
                     break;
                 default:
-                    //labelNoOp.Content = "You need select the math operation!!!";
-                    //labelNoOp.Visibility = Visibility.Visible;
                     Visible = true;
                     break;
             }
@@ -278,7 +260,6 @@ namespace WPFsumApp.ViewModel
         }
         string IDataErrorInfo.this[string propertyName]
         {
-
             get
             {
                 return GetValidationError(propertyName);
@@ -298,7 +279,6 @@ namespace WPFsumApp.ViewModel
                 case "BoundNum2":
                     error = ValidateNumber(BoundNum2);
                     break;
-
             }
             return error;
         }
@@ -309,19 +289,26 @@ namespace WPFsumApp.ViewModel
                 try
                 {
                     int val = Int32.Parse(numprop);
-                    IsEnabledSumButton = true;
+                   
                     return null;
                 }
                 catch (Exception)
                 {
-                    IsEnabledSumButton = false;
+                    if (numprop == BoundNum1)
+                    {
+                        numprop = numprop.Substring(0, numprop.Length - 1);
+                        BoundNum1 = numprop;
+                    }
+                   else
+                    {
+                        numprop = numprop.Substring(0, numprop.Length - 1);
+                        BoundNum2 = numprop;
+                    }                   
                     return "Nem Számot írtál be";
                 }
             }
             return null;
-        }
-       
-    
+        }    
     }
 }
 

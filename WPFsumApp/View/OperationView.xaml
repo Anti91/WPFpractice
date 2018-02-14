@@ -25,8 +25,7 @@
                Content="You need select the math operation!!!" 
                Visibility="{Binding Visible, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Name="btnSumm" Content="Sum" Margin="422,191,0,0"  Command="{Binding SummClickCommand}" 
-                Visibility="{Binding IsEnabledSumButton, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Name="btnSumm" Content="Sum" Margin="422,191,0,0"  Command="{Binding SummClickCommand}"/>
         <Button Name="btnClose" Content="Close" Margin="422,17,0,0"  Command="{Binding ExitButtonClickCommand}" />
         <Button Name="btnClear" Content="Clear"  Margin="422,350,0,0" Command="{Binding ClearButtonClickCommand}"/>
 
