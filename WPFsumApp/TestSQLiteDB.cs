@@ -7,7 +7,7 @@ namespace WPFsumApp
 {
     public class TestSQLiteDB
     {
-        public SQLiteConnection myConnection;
+        private SQLiteConnection myConnection;
 
         public TestSQLiteDB()
         {
@@ -45,7 +45,6 @@ namespace WPFsumApp
             myCommand.Parameters.AddWithValue("SECONDNUMBER", operation.Secondnumber);
             myCommand.Parameters.AddWithValue("RESULT", operation.Result);
             myCommand.Parameters.AddWithValue("TIMESTAMP", operation.Timestamp);
-            
             myCommand.ExecuteNonQuery();
             databaseObject.CloseConnection();
         }
@@ -56,7 +55,6 @@ namespace WPFsumApp
             string query = "SELECT * FROM Operations";
             SQLiteCommand myCommand = new SQLiteCommand(query, databaseObject.myConnection);
             databaseObject.OpenConnection();
-            
             using (SQLiteDataReader queryResult = myCommand.ExecuteReader())
             {
                 if (queryResult.HasRows)
@@ -76,6 +74,7 @@ namespace WPFsumApp
                     }
                 }
             }
+
             databaseObject.CloseConnection();
             return opList;
         }
@@ -85,7 +84,6 @@ namespace WPFsumApp
             string query = "DELETE FROM Operations";
             SQLiteCommand myCommand = new SQLiteCommand(query, databaseObject.myConnection);
             databaseObject.OpenConnection();
-           
             myCommand.ExecuteNonQuery();
             databaseObject.CloseConnection();
         }

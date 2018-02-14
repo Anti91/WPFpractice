@@ -2,14 +2,15 @@
 {
     public class MainWindowViewModel
     {
+        public MainWindowViewModel()
+        {
+            OperationViewModel = new OperationViewModel();
+        }
+
         public OperationViewModel OperationViewModel
         {
             get;
             set;
-        }
-        public MainWindowViewModel()
-        {
-            OperationViewModel  = new OperationViewModel();
         }
     }
 }

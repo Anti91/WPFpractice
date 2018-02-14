@@ -10,15 +10,12 @@ namespace WPFsumApp.View
     /// </summary>
     public partial class OperationView : UserControl
     {
-        OperationViewModel _operationViewModel = new OperationViewModel();
-       
+        private OperationViewModel _operationViewModel = new OperationViewModel();
+
         public OperationView()
         {
             InitializeComponent();
-            DataContext = _operationViewModel;      
+            DataContext = _operationViewModel;
         }
-        
-    
     }
 }
-

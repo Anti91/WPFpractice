@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace WPFsumApp
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         #region Fields
 
@@ -26,6 +26,7 @@ namespace WPFsumApp
         #region Constructors
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="RelayCommand"/> class.
         /// Initializes a new instance of the RelayCommand class
         /// Creates a new command that can always execute.
         /// </summary>
@@ -36,6 +37,7 @@ namespace WPFsumApp
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="RelayCommand"/> class.
         /// Initializes a new instance of the RelayCommand class
         /// Creates a new command.
         /// </summary>
@@ -43,18 +45,8 @@ namespace WPFsumApp
         /// <param name="canExecute">The execution status logic.</param>
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
-
-            if (canExecute == null)
-            {
-                throw new ArgumentNullException("canExecute");
-            }
-
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
+            this.canExecute = canExecute ?? throw new ArgumentNullException("canExecute");
         }
 
         #endregion // Constructors
@@ -65,7 +57,7 @@ namespace WPFsumApp
         /// An event to raise when the CanExecute value is changed
         /// </summary>
         /// <remarks>
-        /// Any subscription to this event will automatically subscribe to both 
+        /// Any subscription to this event will automatically subscribe to both
         /// the local OnCanExecuteChanged method AND
         /// the CommandManager RequerySuggested event
         /// </remarks>
@@ -118,7 +110,7 @@ namespace WPFsumApp
             EventHandler handler = this.CanExecuteChangedInternal;
             if (handler != null)
             {
-                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
+                // DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
                 handler.Invoke(this, EventArgs.Empty);
             }
         }
