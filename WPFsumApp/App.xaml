@@ -9,12 +9,6 @@
                 <ResourceDictionary Source="Resources/GeneralStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BoolToVis" />
-            <ControlTemplate x:Key="validationTemplate">
-                <DockPanel>
-                    <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
-                    <AdornedElementPlaceholder/>
-                </DockPanel>
-            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

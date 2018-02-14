@@ -17,7 +17,6 @@ namespace WPFsumApp.ViewModel
         private string _boundNum2;
         private string _boundNumSum;
         private bool _visible;
-        private bool _isEnabledSumButton;
         public OperationViewModel()
         {
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
@@ -99,18 +98,7 @@ namespace WPFsumApp.ViewModel
                 OnPropertyChanged("Visible");
             }
         }
-        public bool IsEnabledSumButton
-        {
-            get
-            {
-                return _isEnabledSumButton;
-            }
-            set
-            {
-                _isEnabledSumButton = value;
-                OnPropertyChanged("IsEnabledSumButton");
-            }
-        }
+      
         public string BoundNum1
         {
             get
@@ -234,8 +222,10 @@ namespace WPFsumApp.ViewModel
         {
             System.Windows.Application.Current.Shutdown();
         }
-            
-         string IDataErrorInfo.Error
+
+
+        #region Validator ViewModel Iplementation
+        string IDataErrorInfo.Error
         {
             get
             {
@@ -308,7 +298,8 @@ namespace WPFsumApp.ViewModel
                 }
             }
             return null;
-        }    
+        }
+        #endregion
     }
 }
 
