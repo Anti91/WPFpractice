@@ -34,17 +34,17 @@ namespace WPFsumApp
             }
         }
 
-        public void InsertNewOp(TestSQLiteDB databaseObject, int id, int firstnum, string op, int secondnum, int result, string timestamp)
+        public void InsertNewOp(TestSQLiteDB databaseObject, Operation operation)
         {
             string query = "INSERT INTO Operations('ID', 'FIRSTNUMBER', 'OP', 'SECONDNUMBER', 'RESULT', 'TIMESTAMP') VALUES(@ID, @FIRSTNUMBER, @OP, @SECONDNUMBER, @RESULT, @TIMESTAMP)";
             SQLiteCommand myCommand = new SQLiteCommand(query, databaseObject.myConnection);
             databaseObject.OpenConnection();
-            myCommand.Parameters.AddWithValue("ID", id);
-            myCommand.Parameters.AddWithValue("FIRSTNUMBER", firstnum);
-            myCommand.Parameters.AddWithValue("OP", op);
-            myCommand.Parameters.AddWithValue("SECONDNUMBER", secondnum);
-            myCommand.Parameters.AddWithValue("RESULT", result);
-            myCommand.Parameters.AddWithValue("TIMESTAMP", timestamp);
+            myCommand.Parameters.AddWithValue("ID", operation.Id);
+            myCommand.Parameters.AddWithValue("FIRSTNUMBER", operation.Firstnumber);
+            myCommand.Parameters.AddWithValue("OP", operation.Op);
+            myCommand.Parameters.AddWithValue("SECONDNUMBER", operation.Secondnumber);
+            myCommand.Parameters.AddWithValue("RESULT", operation.Result);
+            myCommand.Parameters.AddWithValue("TIMESTAMP", operation.Timestamp);
             
             myCommand.ExecuteNonQuery();
             databaseObject.CloseConnection();

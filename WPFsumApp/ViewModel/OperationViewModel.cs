@@ -8,22 +8,25 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+
 namespace WPFsumApp.ViewModel
 {
-    public class OperationViewModel : INotifyPropertyChanged  
+    public class OperationViewModel : IDataErrorInfo ,INotifyPropertyChanged
     {
         private string _boundNum1;
         private string _boundNum2;
-
+        private string _boundNumSum;
+        private bool _visible;
+        private bool _isEnabledSumButton;
         public OperationViewModel()
         {
-            OperationSymbolList = new List<string>()
+            OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
                 "+",
                 "-",
                 "*",
                 "/"
-            };
+            });
 
             LoremIpsumText =
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
@@ -38,15 +41,35 @@ namespace WPFsumApp.ViewModel
 
             //Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
             OperationCollection = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
-            
+
+            SummClickCommand = new RelayCommand(SumClickMethod);
+            ClearButtonClickCommand = new RelayCommand(ClearButtonClickMethod);
+            ExitButtonClickCommand = new RelayCommand(ExitButtonClickMethod);
+            _visible = false;
         }
 
+
+        public ICommand SummClickCommand
+        {
+            get; set;
+
+        }
+        public ICommand ClearButtonClickCommand
+        {
+            get; set;
+
+        }
+        public ICommand ExitButtonClickCommand
+        {
+            get; set;
+
+        }
         public TestSQLiteDB DatabaseObject
         {
             get;
             set;
         }
-        public List<string> OperationSymbolList
+        public ObservableCollection<string> OperationSymbolList
         {
             get;
         }
@@ -59,9 +82,39 @@ namespace WPFsumApp.ViewModel
             get;
         }
 
+        public string TheSelectedItem
+        {
+            get;
+            set;
+        }
+        public bool Visible
+        {
+            get
+            {
+                return _visible;
+            }
+            set
+            {
+                _visible = value;
+                OnPropertyChanged("Visible");
+            }
+        }
+        public bool IsEnabledSumButton
+        {
+            get
+            {
+                return _isEnabledSumButton;
+            }
+            set
+            {
+                _isEnabledSumButton = value;
+                OnPropertyChanged("IsEnabledSumButton");
+            }
+        }
         public string BoundNum1
         {
-            get {
+            get
+            {
 
                 if (string.IsNullOrEmpty(_boundNum1))
                     return "0";
@@ -89,7 +142,21 @@ namespace WPFsumApp.ViewModel
                 OnPropertyChanged("BoundNum2");
             }
         }
+        public string BoundNumSum
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_boundNumSum))
+                    return "0";
 
+                return _boundNumSum;
+            }
+            set
+            {
+                _boundNumSum = value;
+                OnPropertyChanged("BoundNumSum");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
@@ -102,71 +169,159 @@ namespace WPFsumApp.ViewModel
         }
 
         //Check Imput Char is Number and show errorlabel
-        public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
-        {
-            if (Regex.IsMatch(e.Text, "[^0-9]+"))
-            {
-                e.Handled = true;
-                errorMessage.Content = e.Text + ": is not number (0-9)";
-                errorMessage.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                e.Handled = false;
-                errorMessage.Visibility = Visibility.Hidden;
-            }
-        }
+        //public void checkTextInputIsNumber(TextCompositionEventArgs e, Label errorMessage)
+        //{
+        //    if (Regex.IsMatch(e.Text, "[^0-9]+"))
+        //    {
+        //        e.Handled = true;
+        //        errorMessage.Content = e.Text + ": is not number (0-9)";
+        //        errorMessage.Visibility = Visibility.Visible;
+        //    }
+        //    else
+        //    {
+        //        e.Handled = false;
+        //        errorMessage.Visibility = Visibility.Hidden;
+        //    }
+        //}
 
         //Add Row to OperationList
-        public void ValueToDataGrid(int num1, string op, int num2, int result)
+        public void ValueToDataGrid(int num1, int num2, int result)
         {
             int id = OperationCollection.Count();
             string timestamp = DateTime.Now.ToString();
-            Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = op, Secondnumber = num2, Result = result, Timestamp = timestamp };
+            Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = TheSelectedItem, Secondnumber = num2, Result = result, Timestamp = timestamp };
 
             OperationCollection.Add(addedOperation);
-
-
-            DatabaseObject.InsertNewOp(DatabaseObject, id, num1, op, num2, result, timestamp.ToString());
+            DatabaseObject.InsertNewOp(DatabaseObject, addedOperation);
         }
 
         //Return the result of the selected operation
-        public int GetCalcResult(int num1, int num2, int opIndex, Label labelNoOp)
+        public int GetCalcResult(int num1, int num2, string opSymbol)
         {
-            foreach (var item in DatabaseObject.SelectOpList(DatabaseObject))
-            {
 
-            }
             int result = 0;
-            switch (opIndex)
+            switch (opSymbol)
             {
-                case 0:
+                case "+":
                     result = num1 + num2;
                     break;
-                case 1:
+                case "-":
                     result = num1 - num2;
                     break;
-                case 2:
+                case "*":
                     result = num1 * num2;
                     break;
-                case 3:
+                case "/":
                     result = num1 / num2;
                     break;
                 default:
-                    labelNoOp.Content = "You need select the math operation!!!";
-                    labelNoOp.Visibility = Visibility.Visible;
+                    //labelNoOp.Content = "You need select the math operation!!!";
+                    //labelNoOp.Visibility = Visibility.Visible;
+                    Visible = true;
                     break;
             }
             return result;
         }
 
         //Delete all Operation from DB and Clear OperationList Items
-        public void CleanOperationList()
+        public void ClearButtonClickMethod(object obj)
         {
             DatabaseObject.DeleteAllOp(DatabaseObject);
             OperationCollection.Clear();
 
         }
+
+
+        private void SumClickMethod(object obj)
+        {
+            Visible = false;
+            int result = GetCalcResult(int.Parse(BoundNum1), int.Parse(BoundNum2), TheSelectedItem);
+
+            BoundNumSum = result.ToString();
+
+            if (TheSelectedItem != null)
+            {
+                ValueToDataGrid(int.Parse(BoundNum1), int.Parse(BoundNum2), result);
+                BoundNum1 = "0";
+                BoundNum2 = "0";
+            }
+
+        }
+
+        private void ExitButtonClickMethod(object obj)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+            
+         string IDataErrorInfo.Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+        static readonly string[] ValidatedProperties = { "BoundNum1", "BoundNum2" };
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (string property in ValidatedProperties)
+                {
+                    if (GetValidationError(property) != null)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        string IDataErrorInfo.this[string propertyName]
+        {
+
+            get
+            {
+                return GetValidationError(propertyName);
+            }
+        }
+
+
+
+        string GetValidationError(string propertyName)
+        {
+            string error = null;
+            switch (propertyName)
+            {
+                case "BoundNum1":
+                    error = ValidateNumber(BoundNum1);
+                    break;
+                case "BoundNum2":
+                    error = ValidateNumber(BoundNum2);
+                    break;
+
+            }
+            return error;
+        }
+        private string ValidateNumber( string numprop)
+        {
+            if (!String.IsNullOrEmpty(numprop))
+            {
+                try
+                {
+                    int val = Int32.Parse(numprop);
+                    IsEnabledSumButton = true;
+                    return null;
+                }
+                catch (Exception)
+                {
+                    IsEnabledSumButton = false;
+                    return "Nem Számot írtál be";
+                }
+            }
+            return null;
+        }
+       
+    
     }
 }
 

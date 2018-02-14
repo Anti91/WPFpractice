@@ -5,7 +5,11 @@
                     xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModel">
      <DataTemplate x:Key="mainWindowViewTemplate" DataType="{x:Type viewsmodels:OperationViewModel}">
           <views:OperationView />
+         
       </DataTemplate>
+
     
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
 
 </ResourceDictionary>
