@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:WPFsumApp.View"
              xmlns:user="clr-namespace:WPFsumApp.Model"
              mc:Ignorable="d" Name="UserControl"
-             d:DesignHeight="75" d:DesignWidth="120">
+             d:DesignHeight="128" d:DesignWidth="302">
 
     <Border BorderBrush="Black" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="0.6*"/>
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -19,10 +19,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="Username:" Grid.Row="0" Grid.Column="0"/>
-            <ComboBox Grid.Row="1" Grid.Column="0" Margin="3" IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemsSource="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="Name" >
+            <ComboBox Grid.Row="1" Grid.Column="0" Margin="10,10,10,10" IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemsSource="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="Name" >
 
             </ComboBox>
-            <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="15,3,15,3" Click="Button_Click"/>
+            <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="24,10,24,10" Click="Button_Click"/>
         </Grid>
     </Border>
 </UserControl>
