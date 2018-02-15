@@ -21,6 +21,9 @@ namespace WPFsumApp.View
     /// </summary>
     public partial class LoginUserControl : UserControl
     {
+        public static readonly DependencyProperty MyPropertyProperty =
+           DependencyProperty.Register("MyProperty", typeof(List<User>), typeof(LoginUserControl));
+
         public LoginUserControl()
         {
             InitializeComponent();
@@ -31,12 +34,5 @@ namespace WPFsumApp.View
             get { return (List<User>)GetValue(MyPropertyProperty); }
             set { SetValue(MyPropertyProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MyPropertyProperty =
-            DependencyProperty.Register("MyProperty", typeof(List<User>), typeof(LoginUserControl));
-
-
-
     }
 }
