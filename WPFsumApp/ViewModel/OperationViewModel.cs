@@ -197,12 +197,19 @@ namespace WPFsumApp.ViewModel
         // Add Row to OperationList
         public void ValueToDataGrid(int num1, int num2, int result)
         {
-            int id = OperationCollection.Count();
-            string timestamp = DateTime.Now.ToString();
-            Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = TheSelectedItem, Secondnumber = num2, Result = result, Timestamp = timestamp };
+            if (TheSelectedItem != null)
+            {
+                int id = OperationCollection.Count();
+                string timestamp = DateTime.Now.ToString();
+                Operation addedOperation = new Operation { Id = ++id, Firstnumber = num1, Op = TheSelectedItem, Secondnumber = num2, Result = result, Timestamp = timestamp };
 
-            OperationCollection.Add(addedOperation);
-            DatabaseObject.InsertNewOp(DatabaseObject, addedOperation);
+                OperationCollection.Add(addedOperation);
+                DatabaseObject.InsertNewOp(DatabaseObject, addedOperation);
+            }
+            else
+            {
+                Visible = true;
+            }
         }
 
         // Return the result of the selected operation
