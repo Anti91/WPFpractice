@@ -26,7 +26,7 @@ namespace WPFsumApp.View
            DependencyProperty.Register("MyProperty", typeof(List<User>), typeof(LoginUserControl));
 
         public static readonly DependencyProperty IsLoggedInProperty =
-           DependencyProperty.Register("IsLoggedIn", typeof(bool), typeof(LoginUserControl));
+           DependencyProperty.Register("IsLoggedIn", typeof(bool), typeof(LoginUserControl), new PropertyMetadata(true));
 
         public LoginUserControl()
         {
@@ -44,7 +44,7 @@ namespace WPFsumApp.View
         public bool IsLoggedIn
         {
             get { return (bool)GetValue(IsLoggedInProperty); }
-            set { SetValue(IsLoggedInProperty, value);}
+            set { SetValue(IsLoggedInProperty, value); }
         }
 
         protected void OnPropertyChanged(string name)
