@@ -19,8 +19,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="Username:" Grid.Row="0" Grid.Column="0"/>
-            <ComboBox Grid.Row="1" Grid.Column="0" Margin="3"  ItemsSource="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="Name"/>
-            <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="22,3,0,3" />
+            <ComboBox Grid.Row="1" Grid.Column="0" Margin="3" IsEnabled="{Binding IsLoggedIn}" ItemsSource="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="Name" >
+               
+            </ComboBox>
+            <Button Content="Login" Grid.Row="2" Grid.Column="0" Margin="22,3,0,3" Click="Button_Click" />
         </Grid>
     </Border>
 </UserControl>

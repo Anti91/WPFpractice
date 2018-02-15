@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +25,36 @@ namespace WPFsumApp.View
         public static readonly DependencyProperty MyPropertyProperty =
            DependencyProperty.Register("MyProperty", typeof(List<User>), typeof(LoginUserControl));
 
+        public static readonly DependencyProperty IsLoggedInProperty =
+           DependencyProperty.Register("IsLoggedIn", typeof(bool), typeof(LoginUserControl));
+
         public LoginUserControl()
         {
             InitializeComponent();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public List<User> MyProperty
         {
             get { return (List<User>)GetValue(MyPropertyProperty); }
             set { SetValue(MyPropertyProperty, value); }
+        }
+
+        public bool IsLoggedIn
+        {
+            get { return (bool)GetValue(IsLoggedInProperty); }
+            set { SetValue(IsLoggedInProperty, value);}
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IsLoggedIn = false;
         }
     }
 }
