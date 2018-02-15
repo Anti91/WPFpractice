@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using WPFsumApp.Model;
 
 namespace WPFsumApp.ViewModel
 {
@@ -25,6 +26,14 @@ namespace WPFsumApp.ViewModel
                 "/"
             });
 
+
+            UsersListProperty = new List<User>()
+            {
+                new User { ID=1, Name="Béla1", Description="valami1"},
+                new User { ID=2, Name="Béla2", Description="valami2"},
+                new User { ID=3, Name="Béla3", Description="valami3" }
+            };
+           
             LoremIpsumText =
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                                  "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
@@ -94,6 +103,14 @@ namespace WPFsumApp.ViewModel
         public ObservableCollection<Operation> OperationCollection
         {
             get;
+        }
+
+        public List<User> UsersListProperty
+        {
+            get;
+           
+            set;
+           
         }
 
         public string LoremIpsumText

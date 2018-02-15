@@ -74,10 +74,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\User.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="TestSQLiteDB.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\OperationViewModel.cs" />
+    <Compile Include="View\LoginUserControl.xaml.cs">
+      <DependentUpon>LoginUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OperationView.xaml.cs">
       <DependentUpon>OperationView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\OperationResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
