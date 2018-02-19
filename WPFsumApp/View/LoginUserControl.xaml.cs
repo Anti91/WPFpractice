@@ -28,12 +28,42 @@ namespace WPFsumApp.View
         public static readonly DependencyProperty IsLoggedInProperty =
            DependencyProperty.Register("IsLoggedIn", typeof(bool), typeof(LoginUserControl), new PropertyMetadata(true));
 
+        public static readonly DependencyProperty LoginCommandProperty =
+        DependencyProperty.Register("LoginButtonCommand", typeof(ICommand), typeof(LoginUserControl));
+
+        public static readonly DependencyProperty LogoutCommandProperty =
+        DependencyProperty.Register("ExitButtonCommand", typeof(ICommand), typeof(LoginUserControl));
+
         public LoginUserControl()
         {
             InitializeComponent();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand LoginButtonCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(LoginCommandProperty);
+            }
+
+            set
+            {
+                SetValue(LoginCommandProperty, value);
+            }
+        }
+
+        public ICommand ExitButtonCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(LogoutCommandProperty);
+            }
+
+            set
+            {
+                SetValue(LogoutCommandProperty, value);
+            }
+        }
 
         public List<User> MyProperty
         {
@@ -47,14 +77,5 @@ namespace WPFsumApp.View
             set { SetValue(IsLoggedInProperty, value); }
         }
 
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            IsLoggedIn = false;
-        }
     }
 }

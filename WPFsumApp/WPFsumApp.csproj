@@ -75,8 +75,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\User.cs" />
+    <Compile Include="MVVM\BoolConverter.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="TestSQLiteDB.cs" />
+    <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\OperationViewModel.cs" />
     <Compile Include="View\LoginUserControl.xaml.cs">

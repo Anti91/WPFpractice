@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using WPFsumApp.Model;
+using WPFsumApp.MVVM;
+using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
 {
@@ -14,10 +16,12 @@ namespace WPFsumApp.ViewModel
         private string _boundNum2;
         private string _boundNumSum;
         private bool _visible;
-        private string[] _validatedProperties = { "BoundNum1", "BoundNum2" };
+        private bool _logedin;
+        private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1)};
 
         public OperationViewModel()
         {
+            Logedin = false;
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
                 "+",
@@ -51,11 +55,32 @@ namespace WPFsumApp.ViewModel
             ClearButtonClickCommand = new RelayCommand(ClearButtonClickMethod);
             ExitButtonClickCommand = new RelayCommand(ExitButtonClickMethod);
             _visible = false;
+
+            ViewModelCommand = new DelegateCommand(ViewModelCommandExecute);
+            LogoutModelCommand = new DelegateCommand(LogoutModelCommandExecute);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         string IDataErrorInfo.Error => null;
+
+        public ICommand ViewModelCommand { get; set; }
+
+        public ICommand LogoutModelCommand { get; set; }
+
+        public bool Logedin
+        {
+            get
+            {
+                return _logedin;
+            }
+
+            set
+            {
+                _logedin = value;
+                OnPropertyChanged("Logedin");
+            }
+        }
 
         public bool IsValid
         {
@@ -131,7 +156,7 @@ namespace WPFsumApp.ViewModel
             set
             {
                 _visible = value;
-                OnPropertyChanged("Visible");
+                OnPropertyChanged(nameof(Visible));
             }
         }
 
@@ -148,7 +173,7 @@ namespace WPFsumApp.ViewModel
             set
             {
                 _boundNum1 = value;
-                OnPropertyChanged("BoundNum1");
+                OnPropertyChanged(nameof(BoundNum1));
             }
         }
 
@@ -165,7 +190,7 @@ namespace WPFsumApp.ViewModel
             set
             {
                 _boundNum2 = value;
-                OnPropertyChanged("BoundNum2");
+                OnPropertyChanged(nameof(BoundNum2));
             }
         }
 
@@ -182,7 +207,7 @@ namespace WPFsumApp.ViewModel
             set
             {
                 _boundNumSum = value;
-                OnPropertyChanged("BoundNumSum");
+                OnPropertyChanged(nameof(BoundNumSum));
             }
         }
 
@@ -245,9 +270,38 @@ namespace WPFsumApp.ViewModel
             OperationCollection.Clear();
         }
 
+        public bool IsRegisteredUserID(int id)
+        {
+            // foreach (var item in UsersListProperty)
+            // {
+            //     if (item.ID == id)
+            //         return true;
+            //     else
+            //         return false;
+            // }
+            if (id == 1 || id == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void ViewModelCommandExecute()
+        {
+            Logedin = true;
+        }
+
+        private void LogoutModelCommandExecute()
+        {
+            Logedin = false;
         }
 
         private void SumClickMethod(object obj)
@@ -277,10 +331,10 @@ namespace WPFsumApp.ViewModel
             string error = null;
             switch (propertyName)
             {
-                case "BoundNum1":
+                case nameof(BoundNum1):
                     error = ValidateNumber(BoundNum1);
                     break;
-                case "BoundNum2":
+                case nameof(BoundNum2):
                     error = ValidateNumber(BoundNum2);
                     break;
             }

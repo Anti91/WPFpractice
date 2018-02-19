@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WPFsumApp
+namespace WPFsumApp.MVVM
 {
     public class RelayCommand : ICommand
     {
