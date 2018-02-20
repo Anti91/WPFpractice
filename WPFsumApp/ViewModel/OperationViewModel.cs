@@ -17,7 +17,7 @@ namespace WPFsumApp.ViewModel
         private string _boundNumSum;
         private bool _visible;
         private bool _logedin;
-        private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1)};
+        private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1) };
 
         public OperationViewModel()
         {
@@ -270,6 +270,7 @@ namespace WPFsumApp.ViewModel
             OperationCollection.Clear();
         }
 
+        // Itt lett volna kérdés 
         public bool IsRegisteredUserID(int id)
         {
             // foreach (var item in UsersListProperty)

@@ -76,6 +76,5 @@ namespace WPFsumApp.View
             get { return (bool)GetValue(IsLoggedInProperty); }
             set { SetValue(IsLoggedInProperty, value); }
         }
-
     }
 }
