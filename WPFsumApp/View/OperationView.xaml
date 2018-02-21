@@ -12,9 +12,13 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition Height="0.4*"/>
+            <RowDefinition 
+                Height="0.4*"
+                />
             <RowDefinition />
-            <RowDefinition Height="0.4"/>
+            <RowDefinition 
+                Height="0.4"
+                />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -25,43 +29,152 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition 
+                Width="0.15*"
+                />
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <local:LoginUserControl Grid.Row="0" Grid.Column="5" Grid.RowSpan="4" Grid.ColumnSpan="4" Margin="10,5,10,0"
-                                MyProperty="{Binding UsersListProperty}"
-                                IsLoggedIn="{Binding Logedin}" 
-                                LoginButtonCommand="{Binding ViewModelCommand}"
-                                ExitButtonCommand="{Binding LogoutModelCommand}"/>
+        <local:LoginUserControl 
+            Grid.Row="0"
+            Grid.Column="5"
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="4"
+            Margin="10,5,10,0"
+            MyProperty="{Binding UsersListProperty}"
+            IsLoggedIn="{Binding Logedin}" 
+            LoginButtonCommand="{Binding ViewModelCommand}"
+            ExitButtonCommand="{Binding LogoutModelCommand}"
+            />
 
-        <TextBox Name="numberOne"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15" Text="{Binding Path=BoundNum1, Mode=TwoWay, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox
+            Name="numberOne" 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Margin="15" 
+            Text="{Binding Path=BoundNum1, Mode=TwoWay, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
+            />
+        
+        <TextBox 
+            Name="numberTwo"  
+            Grid.Row="4" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="2" 
+            Margin="15" 
+            Text="{Binding Path=BoundNum2, Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" 
+            />
+        
+        <TextBox 
+            Name="numberSum"  
+            Grid.Row="4" 
+            Grid.Column="6" 
+            Grid.ColumnSpan="2" 
+            Margin="15" 
+            Text="{Binding Path=BoundNumSum, Mode=OneWay}" IsEnabled="False" 
+            />
 
-        <TextBox Name="numberTwo"  Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Margin="15" Text="{Binding Path=BoundNum2, Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox Name="numberSum"  Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2"  Margin="15" Text="{Binding Path=BoundNumSum, Mode=OneWay}" IsEnabled="False" />
+        <Label 
+            Name="labelEqual" 
+            Grid.Row="4" 
+            Grid.Column="5"  
+            Content="="  
+            Margin="0,15,0,15"
+            />
+        
+        <Label 
+            Name="labelError1" 
+            Grid.Row="5" 
+            Grid.Column="0" 
+            Margin="0" 
+            Grid.ColumnSpan="3"  
+            Content="{Binding ElementName=numberOne, Path=(Validation.Errors).CurrentItem.ErrorContent}"  
+            Foreground="#FFF70606"
+            />
+        
+        <Label 
+            Name="labelError2" 
+            Grid.Row="5" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="3" 
+            Content="{Binding ElementName=numberTwo, Path=(Validation.Errors).CurrentItem.ErrorContent}"  
+            Foreground="#FFF70606"
+            />
 
-        <Label Name="labelEqual" Grid.Row="4" Grid.Column="5"  Content="="   Margin="0,15,0,15"/>
-        <Label Name="labelError1" Grid.Row="5" Grid.Column="0" Margin="0" Grid.ColumnSpan="3"  Content="{Binding ElementName=numberOne, Path=(Validation.Errors).CurrentItem.ErrorContent}"  Foreground="#FFF70606"/>
-        <Label Name="labelError2" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Content="{Binding ElementName=numberTwo, Path=(Validation.Errors).CurrentItem.ErrorContent}"  Foreground="#FFF70606"/>
+        <Label 
+            Name="labelNoOp"  
+            Grid.Row="3" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3" 
+            Foreground="#FFF70606"
+            Content="You need select the math operation!!!" 
+            Visibility="{Binding Visible, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
+            />
 
-        <Label Name="labelNoOp"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Foreground="#FFF70606"
-               Content="You need select the math operation!!!" 
-               Visibility="{Binding Visible, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button 
+            Name="btnSumm" 
+            Grid.Row="6" 
+            Grid.Column="6" 
+            Margin="15" 
+            Grid.ColumnSpan="2"  
+            Content="Sum" 
+            Command="{Binding SummClickCommand}" 
+            />
+        
+        <Button 
+            Name="btnClear" 
+            Grid.Row="7" 
+            Grid.Column="6" 
+            Margin="15" 
+            Grid.ColumnSpan="2" 
+            Content="Clear"   
+            Command="{Binding ClearButtonClickCommand}"
+            />
+        
+        <Button 
+            Name="btnClose" 
+            Grid.Row="8" 
+            Grid.Column="6" 
+            Margin="15" 
+            Grid.ColumnSpan="2"  
+            Content="Close"  
+            Command="{Binding ExitButtonClickCommand}"  
+            />
 
-        <Button Name="btnSumm" Grid.Row="6" Grid.Column="6" Margin="15" Grid.ColumnSpan="2"  Content="Sum" Command="{Binding SummClickCommand}" />
-        <Button Name="btnClear" Grid.Row="7" Grid.Column="6" Margin="15" Grid.ColumnSpan="2" Content="Clear"   Command="{Binding ClearButtonClickCommand}"/>
-        <Button Name="btnClose" Grid.Row="8" Grid.Column="6" Margin="15" Grid.ColumnSpan="2"  Content="Close"  Command="{Binding ExitButtonClickCommand}"  />
+        <TextBlock 
+            x:Name="tesxtBlockIpsum"  
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.CanContentScroll="True"  
+            Grid.Row="0" Grid.Column="0" 
+            Grid.RowSpan="3" 
+            Grid.ColumnSpan="5"  
+            Margin="15,20,15,20" 
+            TextWrapping="Wrap"  
+            Text="{Binding LoremIpsumText}"
+            />
 
-        <TextBlock x:Name="tesxtBlockIpsum"  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-         ScrollViewer.VerticalScrollBarVisibility="Auto"
-         ScrollViewer.CanContentScroll="True"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="5"  Margin="15,20,15,20" 
-                   TextWrapping="Wrap"  Text="{Binding LoremIpsumText}"/>
+        <ComboBox 
+            Name="comboMathSymbol" 
+            Grid.Row="4" 
+            Grid.Column="2" 
+            Margin="15" 
+            ItemsSource="{Binding OperationSymbolList}" 
+            SelectedItem="{Binding TheSelectedItem, Mode=TwoWay}" 
+            />
 
-        <ComboBox Name="comboMathSymbol" Grid.Row="4" Grid.Column="2" Margin="15" ItemsSource="{Binding OperationSymbolList}" SelectedItem="{Binding TheSelectedItem, Mode=TwoWay}" />
-
-        <DataGrid Name="dGridHistory" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="5"  Margin="15"  ItemsSource="{Binding Path=OperationCollection, Mode=OneWay}" AutoGenerateColumns="True" CanUserAddRows="False" >
-
-        </DataGrid>
+        <DataGrid 
+            Name="dGridHistory" 
+            Grid.Row="6" 
+            Grid.Column="0" 
+            Grid.RowSpan="3" 
+            Grid.ColumnSpan="5"  
+            Margin="15"  
+            ItemsSource="{Binding Path=OperationCollection, Mode=OneWay}" 
+            AutoGenerateColumns="True" 
+            CanUserAddRows="False" 
+            />
+        
     </Grid>
 </UserControl>
