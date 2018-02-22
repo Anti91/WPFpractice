@@ -22,6 +22,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 		SolutionGuid = {27E621E7-9AA5-4F8B-A452-D18E9C24E804}
 	EndGlobalSection
 EndGlobal

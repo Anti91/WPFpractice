@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
 using WPFsumApp.Model;
-using WPFsumApp.MVVM;
+// using WPFsumApp.MVVM;
 using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
@@ -51,9 +52,9 @@ namespace WPFsumApp.ViewModel
             // Off magamnak: ObservableCollection alpaban tartalmazza a INotifyCollectionChanged, INotifyPropertyChanged -eket sima listel ellentétben
             OperationCollection = new ObservableCollection<Operation>(DatabaseObject.SelectOpList(DatabaseObject));
 
-            SummClickCommand = new RelayCommand(SumClickMethod);
-            ClearButtonClickCommand = new RelayCommand(ClearButtonClickMethod);
-            ExitButtonClickCommand = new RelayCommand(ExitButtonClickMethod);
+            SummClickCommand = new DelegateCommand(SumClickMethod);
+            ClearButtonClickCommand = new DelegateCommand(ClearButtonClickMethod);
+            ExitButtonClickCommand = new DelegateCommand(ExitButtonClickMethod);
             _visible = false;
 
             ViewModelCommand = new DelegateCommand(ViewModelCommandExecute);
@@ -264,13 +265,13 @@ namespace WPFsumApp.ViewModel
         }
 
         // Delete all Operation from DB and Clear OperationList Items
-        public void ClearButtonClickMethod(object obj)
+        public void ClearButtonClickMethod()
         {
             DatabaseObject.DeleteAllOp(DatabaseObject);
             OperationCollection.Clear();
         }
 
-        // Itt lett volna kérdés 
+        // Itt lett volna kérdés
         public bool IsRegisteredUserID(int id)
         {
             // foreach (var item in UsersListProperty)
@@ -305,7 +306,7 @@ namespace WPFsumApp.ViewModel
             Logedin = false;
         }
 
-        private void SumClickMethod(object obj)
+        private void SumClickMethod()
         {
             Visible = false;
             int result = GetCalcResult(int.Parse(BoundNum1), int.Parse(BoundNum2), TheSelectedItem);
@@ -322,7 +323,7 @@ namespace WPFsumApp.ViewModel
 
         #region Validator ViewModel Iplementation
 
-        private void ExitButtonClickMethod(object obj)
+        private void ExitButtonClickMethod()
         {
             System.Windows.Application.Current.Shutdown();
         }

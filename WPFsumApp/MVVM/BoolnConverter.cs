@@ -12,7 +12,7 @@ namespace WPFsumApp.MVVM
     {
         #region IValueConverter Members
 
-        public object Convert(object value, Type targetType, object parameter,System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (targetType != typeof(bool))
                 throw new InvalidOperationException("The target must be a boolean");
