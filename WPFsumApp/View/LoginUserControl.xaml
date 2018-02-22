@@ -34,7 +34,7 @@
                 Grid.Column="0" 
                 Margin="10" 
                 IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Invers}}" 
-                ItemsSource="{Binding MyProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                ItemsSource="{Binding UserListProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                 DisplayMemberPath="Name" 
                 >
 

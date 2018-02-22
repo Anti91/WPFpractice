@@ -22,17 +22,17 @@ namespace WPFsumApp.View
     /// </summary>
     public partial class LoginUserControl : UserControl
     {
-        public static readonly DependencyProperty MyPropertyProperty =
-           DependencyProperty.Register("MyProperty", typeof(List<User>), typeof(LoginUserControl));
+        public static readonly DependencyProperty UserListDependProperty =
+           DependencyProperty.Register(nameof(UserListProperty), typeof(List<User>), typeof(LoginUserControl));
 
         public static readonly DependencyProperty IsLoggedInProperty =
-           DependencyProperty.Register("IsLoggedIn", typeof(bool), typeof(LoginUserControl), new PropertyMetadata(true));
+           DependencyProperty.Register(nameof(IsLoggedIn), typeof(bool), typeof(LoginUserControl), new PropertyMetadata(true));
 
         public static readonly DependencyProperty LoginCommandProperty =
-        DependencyProperty.Register("LoginButtonCommand", typeof(ICommand), typeof(LoginUserControl));
+        DependencyProperty.Register(nameof(LoginButtonCommand), typeof(ICommand), typeof(LoginUserControl));
 
         public static readonly DependencyProperty LogoutCommandProperty =
-        DependencyProperty.Register("ExitButtonCommand", typeof(ICommand), typeof(LoginUserControl));
+        DependencyProperty.Register(nameof(ExitButtonCommand), typeof(ICommand), typeof(LoginUserControl));
 
         public LoginUserControl()
         {
@@ -65,10 +65,10 @@ namespace WPFsumApp.View
             }
         }
 
-        public List<User> MyProperty
+        public List<User> UserListProperty
         {
-            get { return (List<User>)GetValue(MyPropertyProperty); }
-            set { SetValue(MyPropertyProperty, value); }
+            get { return (List<User>)GetValue(UserListDependProperty); }
+            set { SetValue(UserListDependProperty, value); }
         }
 
         public bool IsLoggedIn

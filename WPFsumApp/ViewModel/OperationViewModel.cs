@@ -17,12 +17,12 @@ namespace WPFsumApp.ViewModel
         private string _boundNum2;
         private string _boundNumSum;
         private bool _visible;
-        private bool _logedin;
+        private bool _userIsLoggedIn;
         private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1) };
 
         public OperationViewModel()
         {
-            Logedin = false;
+            UserIsLoggedIn = false;
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
                 "+",
@@ -69,17 +69,17 @@ namespace WPFsumApp.ViewModel
 
         public ICommand LogoutModelCommand { get; set; }
 
-        public bool Logedin
+        public bool UserIsLoggedIn
         {
             get
             {
-                return _logedin;
+                return _userIsLoggedIn;
             }
 
             set
             {
-                _logedin = value;
-                OnPropertyChanged("Logedin");
+                _userIsLoggedIn = value;
+                OnPropertyChanged(nameof(UserIsLoggedIn));
             }
         }
 
@@ -298,12 +298,12 @@ namespace WPFsumApp.ViewModel
 
         private void ViewModelCommandExecute()
         {
-            Logedin = true;
+            UserIsLoggedIn = true;
         }
 
         private void LogoutModelCommandExecute()
         {
-            Logedin = false;
+            UserIsLoggedIn = false;
         }
 
         private void SumClickMethod()
