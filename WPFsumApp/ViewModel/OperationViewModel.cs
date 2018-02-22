@@ -7,7 +7,6 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using WPFsumApp.Model;
 // using WPFsumApp.MVVM;
-using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WPFsumApp
+﻿namespace WPFsumApp
 {
     public class Operation
     {
