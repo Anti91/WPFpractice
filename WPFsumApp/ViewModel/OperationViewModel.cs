@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
@@ -10,6 +11,7 @@ using WPFsumApp.Model;
 
 namespace WPFsumApp.ViewModel
 {
+    [Export]
     public class OperationViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
         private string _boundNum1;
@@ -19,6 +21,7 @@ namespace WPFsumApp.ViewModel
         private bool _userIsLoggedIn;
         private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1) };
 
+        //[ImportingConstructor]
         public OperationViewModel()
         {
             UserIsLoggedIn = false;

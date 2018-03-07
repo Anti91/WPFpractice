@@ -1,16 +1,10 @@
-﻿namespace WPFsumApp.ViewModel
-{
-    public class MainWindowViewModel
-    {
-        public MainWindowViewModel()
-        {
-            OperationViewModel = new OperationViewModel();
-        }
+﻿using System.ComponentModel.Composition;
+using Prism.Mvvm;
 
-        public OperationViewModel OperationViewModel
-        {
-            get;
-            set;
-        }
+namespace WPFsumApp.ViewModel
+{
+    [Export]
+    public class MainWindowViewModel : BindableBase
+    {
     }
 }
