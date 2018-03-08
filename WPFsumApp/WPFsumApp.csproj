@@ -121,7 +121,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CenitoBootstrapper.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="MVVM\BoolnConverter.cs" />
     <Compile Include="TestSQLiteDB.cs" />

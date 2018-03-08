@@ -3,10 +3,10 @@
                     xmlns:local="clr-namespace:WPFsumApp.Resources"
                     xmlns:views ="clr-namespace:WPFsumApp.View"
                     xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModel">
-    <!--<DataTemplate x:Key="mainWindowViewTemplate" DataType="{x:Type viewsmodels:OperationViewModel}">
-        <views:OperationView />
-
-    </DataTemplate>-->
+    
+    <DataTemplate DataType="{x:Type viewsmodels:OperationViewModel}">
+        <views:OperationView DataContext="{Binding}" />
+    </DataTemplate>
     
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 </ResourceDictionary>

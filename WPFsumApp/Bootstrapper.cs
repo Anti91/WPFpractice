@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Prism.Mef;
 
 namespace WPFsumApp
 {
-    public class CenitoBootstrapper : MefBootstrapper
+    public class Bootstrapper : MefBootstrapper
     {
         protected override void ConfigureAggregateCatalog()
         {
-            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(CenitoBootstrapper).Assembly));
+            AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
             base.ConfigureAggregateCatalog();
         }
 
@@ -29,6 +25,14 @@ namespace WPFsumApp
             Application.Current.MainWindow = (MainWindow)Shell;
             Application.Current.MainWindow.Show();
             Application.Current.MainWindow.Activate();
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+
+            // Container für andere Module verfügbar machen
+            Container.ComposeExportedValue(Container);
         }
     }
 }

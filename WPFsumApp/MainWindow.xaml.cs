@@ -12,11 +12,11 @@ namespace WPFsumApp
     public partial class MainWindow : Window
     {
         [ImportingConstructor]
-        public MainWindow(OperationViewModel container)
+        public MainWindow(CompositionContainer container)
         {
             InitializeComponent();
 
-            //var opView = container.GetExportedValue<OperationViewModel>();
+            var opView = container.GetExportedValue<OperationViewModel>();
         }
 
         [Import]

@@ -21,14 +21,22 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <views:OperationView
+        <!--<views:OperationView DataContext="{Binding}" />-->
+        
+        <!--<views:OperationView
             Grid.Column="0" 
-            Grid.Row="0"/>
+            Grid.Row="0"/>-->
         
         <!--<ContentControl
             Grid.Column="0" 
             Grid.Row="0"
-            ContentTemplate="{StaticResource mainWindowViewTemplate}"
+            Content="{Binding ActiveViewModel}"
             />-->
+
+        <ContentControl
+            Grid.Column="0" 
+            Grid.Row="0"
+            Content="{Binding OperationViewModel}"
+            />
     </Grid>
 </Window>

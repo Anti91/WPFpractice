@@ -15,7 +15,7 @@ namespace WPFsumApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            CenitoBootstrapper bootstrapper = new CenitoBootstrapper();
+            Bootstrapper bootstrapper = new Bootstrapper();
             bootstrapper.Run();
             base.OnStartup(e);
         }
