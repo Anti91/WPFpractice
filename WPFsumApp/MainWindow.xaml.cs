@@ -16,7 +16,7 @@ namespace WPFsumApp
         {
             InitializeComponent();
 
-            //var opView = container.GetExportedValue<OperationViewModel>();
+            // var opView = container.GetExportedValue<OperationViewModel>();
         }
 
         [Import]
