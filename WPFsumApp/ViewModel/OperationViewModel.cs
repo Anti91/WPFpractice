@@ -7,7 +7,6 @@ using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using WPFsumApp.Model;
-// using WPFsumApp.MVVM;
 
 namespace WPFsumApp.ViewModel
 {
@@ -21,7 +20,7 @@ namespace WPFsumApp.ViewModel
         private bool _userIsLoggedIn;
         private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1) };
 
-        //[ImportingConstructor]
+        // [ImportingConstructor]
         public OperationViewModel()
         {
             UserIsLoggedIn = false;

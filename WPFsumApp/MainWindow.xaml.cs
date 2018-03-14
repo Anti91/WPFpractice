@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
 using System.Windows;
-using WPFsumApp.ViewModel;
 
 namespace WPFsumApp
 {
@@ -11,19 +9,17 @@ namespace WPFsumApp
     [Export]
     public partial class MainWindow : Window
     {
-        [ImportingConstructor]
-        public MainWindow(CompositionContainer container)
+        // [ImportingConstructor]
+        public MainWindow()
         {
             InitializeComponent();
-
-            // var opView = container.GetExportedValue<OperationViewModel>();
         }
 
-        [Import]
-        public MainWindowViewModel ViewModel
-        {
-            get => DataContext as MainWindowViewModel;
-            set => DataContext = value;
-        }
+        // [Import]
+        // public MainWindowViewModel ViewModel
+        // {
+        //     get => DataContext as MainWindowViewModel;
+        //     set => DataContext = value;
+        // }
     }
 }

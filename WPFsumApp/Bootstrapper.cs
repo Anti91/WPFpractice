@@ -11,6 +11,7 @@ namespace WPFsumApp
         {
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
             base.ConfigureAggregateCatalog();
+
         }
 
         protected override DependencyObject CreateShell()

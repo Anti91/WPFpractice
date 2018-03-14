@@ -124,6 +124,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="MVVM\BoolnConverter.cs" />
+    <Compile Include="MVVM\ModuleA.cs" />
     <Compile Include="TestSQLiteDB.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

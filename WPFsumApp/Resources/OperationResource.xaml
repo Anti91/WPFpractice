@@ -1,12 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:WPFsumApp.Resources"
-                    xmlns:views ="clr-namespace:WPFsumApp.View"
-                    xmlns:viewsmodels ="clr-namespace:WPFsumApp.ViewModel">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <DataTemplate DataType="{x:Type viewsmodels:OperationViewModel}">
+    <!--<DataTemplate DataType="{x:Type viewsmodels:OperationViewModel}">
         <views:OperationView DataContext="{Binding}" />
-    </DataTemplate>
+    </DataTemplate>-->
     
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 </ResourceDictionary>
