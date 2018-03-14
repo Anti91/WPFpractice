@@ -4,10 +4,10 @@ using Prism.Mvvm;
 
 namespace WPFsumApp.ViewModel
 {
-    [Export]
+    //[Export]
     public class MainWindowViewModel : BindableBase
     {
-        [ImportingConstructor]
+        //[ImportingConstructor]
         public MainWindowViewModel()
         {
             // ActiveViewModel = _container.GetExportedValue<OperationViewModel>();
@@ -18,7 +18,7 @@ namespace WPFsumApp.ViewModel
         //    get { return _activeViewModel; }
         //    set { SetProperty(ref _activeViewModel, value); }
         // }
-        [Import]
-        public OperationViewModel OperationViewModel { get; set; }
+        //[Import]
+        //public OperationViewModel OperationViewModel { get; set; }
     }
 }
