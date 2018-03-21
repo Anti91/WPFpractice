@@ -1,15 +1,23 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using Microsoft.Practices.Prism.Regions;
 using Prism.Mvvm;
+using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
 {
-    //[Export]
+    [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : BindableBase
     {
-        //[ImportingConstructor]
-        public MainWindowViewModel()
+        private readonly IRegionManager _regionManager;
+
+        [ImportingConstructor]
+        public MainWindowViewModel(CompositionContainer container)//(IRegionManager regionManager)
         {
+            var regionManager = container.GetExportedValue<IRegionManager>();
+            this._regionManager = regionManager;
+            this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
+
             // ActiveViewModel = _container.GetExportedValue<OperationViewModel>();
         }
 

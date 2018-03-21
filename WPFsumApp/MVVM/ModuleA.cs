@@ -6,12 +6,12 @@ using WPFsumApp.View;
 
 namespace WPFsumApp.MVVM
 {
-    [ModuleExport(typeof(ModuleA))]
+    //[ModuleExport(typeof(ModuleA))]
     public class ModuleA : IModule
     {
         private readonly IRegionManager regionManager;
 
-        [ImportingConstructor]
+        //[ImportingConstructor]
         public ModuleA(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
