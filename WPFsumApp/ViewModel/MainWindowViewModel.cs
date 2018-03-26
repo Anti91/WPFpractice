@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using Microsoft.Practices.Prism.Regions;
 using Prism.Mvvm;
+using Prism.Regions;
 using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
