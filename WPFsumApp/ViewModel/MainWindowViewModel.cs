@@ -6,17 +6,17 @@ using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
 {
-    [Export(typeof(MainWindowViewModel))]
+    [Export]
     public class MainWindowViewModel : BindableBase
     {
-        private readonly IRegionManager _regionManager;
+        // private readonly IRegionManager _regionManager;
 
         [ImportingConstructor]
-        public MainWindowViewModel(CompositionContainer container)//(IRegionManager regionManager)
+        public MainWindowViewModel(IRegionManager regionManager)//(IRegionManager regionManager)
         {
-            var regionManager = container.GetExportedValue<IRegionManager>();
-            this._regionManager = regionManager;
-            this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
+            //this._regionManager = regionManager;
+            //this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
 
             // ActiveViewModel = _container.GetExportedValue<OperationViewModel>();
         }
