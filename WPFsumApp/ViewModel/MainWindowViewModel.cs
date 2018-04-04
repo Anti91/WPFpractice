@@ -17,7 +17,7 @@ namespace WPFsumApp.ViewModel
             //this._regionManager = regionManager;
             //this._regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(OperationView));
-
+            regionManager.RegisterViewWithRegion("MenuRegion", typeof(MenuView));
             // ActiveViewModel = _container.GetExportedValue<OperationViewModel>();
         }
 

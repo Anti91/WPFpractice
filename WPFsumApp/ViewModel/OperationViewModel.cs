@@ -1,16 +1,16 @@
-﻿using Prism.Commands;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Windows.Input;
-//using Microsoft.Practices.Prism.Commands;
-using WPFsumApp.Model;
-
-namespace WPFsumApp.ViewModel
+﻿namespace WPFsumApp.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.Linq;
+    using System.Windows.Input;
+    using Prism.Commands;
+    //using Microsoft.Practices.Prism.Commands;
+    using WPFsumApp.Model;
+
     [Export]
     public class OperationViewModel : IDataErrorInfo, INotifyPropertyChanged
     {

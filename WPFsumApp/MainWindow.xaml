@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:WPFsumApp.View"
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700">
+        Title="MainWindow" Height="500" Width="800">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,9 +17,17 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <!--<views:OperationView DataContext="{Binding}" />-->
@@ -33,10 +41,16 @@
             Grid.Row="0"
             Content="{Binding ActiveViewModel}"
             />-->
-
+        <ContentControl Grid.Row="0" 
+                        Grid.Column="4"                         
+                        Grid.RowSpan="5"
+                        prism:RegionManager.RegionName="MenuRegion" 
+                        />
         <ContentControl
             Grid.Column="0" 
             Grid.Row="0"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="5"
             prism:RegionManager.RegionName="ContentRegion"          
             />
     </Grid>

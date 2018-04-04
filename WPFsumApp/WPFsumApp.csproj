@@ -108,10 +108,14 @@
     <Compile Include="MVVM\BoolnConverter.cs" />
     <Compile Include="TestSQLiteDB.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />
+    <Compile Include="ViewModel\DefaultViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\OperationViewModel.cs" />
     <Compile Include="View\LoginUserControl.xaml.cs">
       <DependentUpon>LoginUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OperationView.xaml.cs">
       <DependentUpon>OperationView.xaml</DependentUpon>
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

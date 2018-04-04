@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -6,6 +7,7 @@ using WPFsumApp.Model;
 
 namespace WPFsumApp.View
 {
+    [Export]
     /// <summary>
     /// Interaction logic for LoginUserControl.xaml
     /// </summary>
