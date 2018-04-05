@@ -2,14 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WPFsumApp"
+             xmlns:converters="clr-namespace:Ersa.Global.Controls.Converters"
              xmlns:Converter="clr-namespace:WPFsumApp.MVVM">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/GeneralStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BoolToVis" />
             <Converter:BoolnConverter x:Key="Invers" />
+            <converters:EDC_ObjectNachIstObjectNullConverter x:Key="C_strConverter_NullNachBool" />
+            <converters:EDC_ObjectNachIstObjectNullConverter x:Key="C_strConverter_NichtNullNachBool"
+                                                     PRO_blnIstInvertiert="True" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

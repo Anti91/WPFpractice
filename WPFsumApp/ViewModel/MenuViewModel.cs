@@ -1,12 +1,10 @@
-﻿    using System.ComponentModel.Composition;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-    using Prism.Commands;
-    using Prism.Regions;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
-using WPFsumApp.View;
+using System.Windows.Input;
 using Microsoft.Practices.ServiceLocation;
+using Prism.Commands;
+using Prism.Regions;
+using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel
 {
@@ -38,15 +36,15 @@ namespace WPFsumApp.ViewModel
         private void ClaculatorCommandExecute()
         {
             IRegion region = _regionManager.Regions["ContentRegion"];
-            //_regionManager.Regions["ContentRegion"].Add(new OperationView(), "OperationView");
+
             object ordersView = region.GetView("OperationView");
             if (ordersView == null)
             {
                 ordersView = ServiceLocator.Current.GetInstance<OperationView>();
                 region.Add(ordersView, "OperationView");
             }
+
             region.Activate(ordersView);
         }
-
     }
 }

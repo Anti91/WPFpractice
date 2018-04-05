@@ -102,12 +102,15 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Converters\NotNullBoolConverter.cs" />
+    <Compile Include="Converters\BoolConverters\EDC_ObjectNachIstObjectNullConverter.cs" />
+    <Compile Include="Converters\BoolConverters\EDC_UniversalBoolConverter.cs" />
+    <Compile Include="Converters\BoolConverters\EDC_UniversalConverter.cs" />
+    <Compile Include="Converters\BoolConverters\EDC_UniversalToBoolConverter.cs" />
+    <Compile Include="Converters\BoolConverters\EDC_UniversalToVisibilityConverter.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="MVVM\BoolnConverter.cs" />
     <Compile Include="TestSQLiteDB.cs" />
     <Compile Include="MVVM\DelegateCommand.cs" />
-    <Compile Include="ViewModel\DefaultViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
@@ -136,14 +139,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\GeneralStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\OperationResource.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\LoginUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

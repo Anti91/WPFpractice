@@ -10,11 +10,9 @@ namespace WPFsumApp.View
     [Export(typeof(MenuView))]
     public partial class MenuView : UserControl
     {
-        //public MenuView(MenuViewModel mvm )
         public MenuView()
         {
             InitializeComponent();
-            //MenuVModel = mvm;
         }
 
         [Import]

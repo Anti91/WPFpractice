@@ -9,7 +9,7 @@
              d:DesignHeight="500" d:DesignWidth="700">
 
     <Grid
-        IsEnabled="{Binding UserController}">
+        IsEnabled="{Binding UserController, Converter={StaticResource C_strConverter_NullNachBool}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.80*"/>
@@ -24,7 +24,7 @@
             Grid.Row="0"  
             Grid.Column="0" 
             x:Name="OperationsUIGrid"  
-            IsEnabled="{Binding UserIsLoggedIn}"
+            
             >
 
             <Grid.RowDefinitions>
@@ -73,7 +73,7 @@
             Grid.ColumnSpan="2"
             Margin="0,6,0,0"
             x:Name="ResultAndButtonsGrid"  
-            IsEnabled="{Binding UserIsLoggedIn}"
+            
             >
             <Grid.RowDefinitions>
                 <RowDefinition 

@@ -34,6 +34,7 @@
                 Margin="10" 
                 IsEnabled="{Binding IsLoggedIn, Converter={StaticResource Invers}}" 
                 ItemsSource="{Binding UsersListProperty}" 
+                SelectedItem="{Binding LoggedInUser}"
                 DisplayMemberPath="Name" 
                 >
 

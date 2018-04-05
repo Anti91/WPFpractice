@@ -1,13 +1,11 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.ComponentModel.Composition;
-    using System.Linq;
-    using System.Windows.Input;
-    using Prism.Commands;
-    //using Microsoft.Practices.Prism.Commands;
-    using WPFsumApp.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Windows.Input;
+using Prism.Commands;
+using WPFsumApp.Controllers;
+using WPFsumApp.Model;
 
 namespace WPFsumApp.ViewModel
 {
@@ -16,10 +14,14 @@ namespace WPFsumApp.ViewModel
     {
         private bool _visible;
         private bool _isLoggedIn;
+        private UserController _userController;
 
-        // [ImportingConstructor]
-        public LoginViewModel()
+        [ImportingConstructor]
+        public LoginViewModel(
+            UserController userController)
         {
+            _userController = userController ?? throw new ArgumentNullException(nameof(userController));
+
             IsLoggedIn = false;
 
             UsersListProperty = new List<User>()
@@ -40,6 +42,8 @@ namespace WPFsumApp.ViewModel
         public ICommand LoginButtonCommand { get; set; }
 
         public ICommand ExitButtonCommand { get; set; }
+
+        public User LoggedInUser { get; set; }
 
         public bool IsLoggedIn
         {
@@ -75,16 +79,8 @@ namespace WPFsumApp.ViewModel
             }
         }
 
-        // Itt lett volna kérdés
         public bool IsRegisteredUserID(int id)
         {
-            // foreach (var item in UsersListProperty)
-            // {
-            //     if (item.ID == id)
-            //         return true;
-            //     else
-            //         return false;
-            // }
             if (id == 1 || id == 3)
             {
                 return true;
@@ -103,11 +99,13 @@ namespace WPFsumApp.ViewModel
         private void LoginButtonCommandExecute()
         {
             IsLoggedIn = true;
+            _userController.ActualUser = LoggedInUser;
         }
 
         private void ExitButtonCommandExecute()
         {
             IsLoggedIn = false;
+            _userController.ActualUser = null;
         }
     }
 }

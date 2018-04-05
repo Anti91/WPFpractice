@@ -14,10 +14,8 @@ namespace WPFsumApp.View
         public OperationView()
         {
             InitializeComponent();
-            //ViewModel = vm;
-            
         }
-        
+
         [Import]
         public OperationViewModel ViewModel
         {
