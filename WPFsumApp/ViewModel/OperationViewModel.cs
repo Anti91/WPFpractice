@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Windows.Input;
     using Prism.Commands;
+    using WPFsumApp.Controllers;
     //using Microsoft.Practices.Prism.Commands;
     using WPFsumApp.Model;
 
@@ -18,13 +19,14 @@
         private string _boundNum2;
         private string _boundNumSum;
         private bool _visible;
-        private bool _userIsLoggedIn;
         private string[] _validatedProperties = { nameof(BoundNum1), nameof(BoundNum1) };
 
-        // [ImportingConstructor]
-        public OperationViewModel()
+        [ImportingConstructor]
+        public OperationViewModel(
+            UserController userController)
         {
-            UserIsLoggedIn = false;
+            UserController = userController ?? throw new ArgumentNullException(nameof(userController));
+
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
                 "+",
@@ -32,13 +34,6 @@
                 "*",
                 "/"
             });
-
-            UsersListProperty = new List<User>()
-            {
-                new User { ID = 1, Name = "Béla1", Description = "valami1" },
-                new User { ID = 2, Name = "Béla2", Description = "valami2" },
-                new User { ID = 3, Name = "Béla3", Description = "valami3" }
-            };
 
             LoremIpsumText =
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
@@ -58,32 +53,13 @@
             ClearButtonClickCommand = new DelegateCommand(ClearButtonClickMethod);
             ExitButtonClickCommand = new DelegateCommand(ExitButtonClickMethod);
             _visible = false;
-
-            ViewModelCommand = new DelegateCommand(ViewModelCommandExecute);
-            LogoutModelCommand = new DelegateCommand(LogoutModelCommandExecute);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public UserController UserController { get; }
+
         string IDataErrorInfo.Error => null;
-
-        public ICommand ViewModelCommand { get; set; }
-
-        public ICommand LogoutModelCommand { get; set; }
-
-        public bool UserIsLoggedIn
-        {
-            get
-            {
-                return _userIsLoggedIn;
-            }
-
-            set
-            {
-                _userIsLoggedIn = value;
-                OnPropertyChanged(nameof(UserIsLoggedIn));
-            }
-        }
 
         public bool IsValid
         {
@@ -130,12 +106,6 @@
         public ObservableCollection<Operation> OperationCollection
         {
             get;
-        }
-
-        public List<User> UsersListProperty
-        {
-            get;
-            set;
         }
 
         public string LoremIpsumText
@@ -296,16 +266,6 @@
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private void ViewModelCommandExecute()
-        {
-            UserIsLoggedIn = true;
-        }
-
-        private void LogoutModelCommandExecute()
-        {
-            UserIsLoggedIn = false;
         }
 
         private void SumClickMethod()

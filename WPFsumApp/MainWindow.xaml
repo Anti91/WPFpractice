@@ -46,6 +46,7 @@
                         Grid.RowSpan="5"
                         prism:RegionManager.RegionName="MenuRegion" 
                         />
+        
         <ContentControl
             Grid.Column="0" 
             Grid.Row="0"

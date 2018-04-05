@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPFsumApp.View.OperationView"
+﻿<UserControl x:Class="WPFsumApp.View.OperationView" x:Name="OperationViewInstance"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,8 @@
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="700">
 
-    <Grid >
+    <Grid
+        IsEnabled="{Binding UserController}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.80*"/>
@@ -65,16 +66,7 @@
                 Visibility="{Binding Visible, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
             />
         </Grid>
-        <local:LoginUserControl 
-            Grid.Row="0"
-            Grid.Column="1"
-            Margin="10,5,10,0"
-            UserListProperty="{Binding UsersListProperty}"
-            IsLoggedIn="{Binding UserIsLoggedIn}" 
-            LoginButtonCommand="{Binding ViewModelCommand}"
-            ExitButtonCommand="{Binding LogoutModelCommand}"
-            />
-        
+
         <Grid
             Grid.Row="1"
             Grid.Column="0"

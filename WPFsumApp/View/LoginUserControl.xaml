@@ -11,8 +11,7 @@
         BorderBrush="Black" 
         BorderThickness="1"
         >
-        <Grid 
-            DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition 
                     Height="0.6*"
@@ -33,8 +32,8 @@
                 Grid.Row="1" 
                 Grid.Column="0" 
                 Margin="10" 
-                IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Invers}}" 
-                ItemsSource="{Binding UserListProperty, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                IsEnabled="{Binding IsLoggedIn, Converter={StaticResource Invers}}" 
+                ItemsSource="{Binding UsersListProperty}" 
                 DisplayMemberPath="Name" 
                 >
 
@@ -44,7 +43,7 @@
                 Grid.Row="2" 
                 Grid.Column="0" 
                 Margin="24,10,24,10" 
-                IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Invers}}" 
+                IsEnabled="{Binding IsLoggedIn, Converter={StaticResource Invers}}" 
                 Command="{Binding LoginButtonCommand}"
                 />
             <Button 
@@ -52,7 +51,7 @@
                 Grid.Row="3" 
                 Grid.Column="0"
                 Margin="24,10,24,10"  
-                IsEnabled="{Binding IsLoggedIn, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                IsEnabled="{Binding IsLoggedIn}" 
                 Command="{Binding ExitButtonCommand}"
                 />
         </Grid>

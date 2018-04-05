@@ -10,7 +10,7 @@ namespace WPFsumApp
     [Export]
     public partial class MainWindow : Window
     {
-        //[ImportingConstructor]
+        [ImportingConstructor]
         public MainWindow()
         {
             InitializeComponent();

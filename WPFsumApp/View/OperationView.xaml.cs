@@ -11,12 +11,14 @@ namespace WPFsumApp.View
     public partial class OperationView : UserControl
     {
         [ImportingConstructor]
-        public OperationView(OperationViewModel vm)
+        public OperationView()
         {
             InitializeComponent();
-            ViewModel = vm;
+            //ViewModel = vm;
+            
         }
-
+        
+        [Import]
         public OperationViewModel ViewModel
         {
             get { return this.DataContext as OperationViewModel; }

@@ -13,12 +13,12 @@
             <StackPanel>
                 <Button 
                     Content="Properties"
-                    
+                    Command="{Binding PropertiesCommand}"
                 />
                 <Button 
                     Content="Claculator"
-                  
-                    />
+                    Command="{Binding ClaculatorCommand}"
+                />
                 <Button Content="Users"/>
             </StackPanel>
         </DockPanel>
