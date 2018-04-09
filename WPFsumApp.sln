@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFsumApp", "WPFsumApp\WPFs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE652BD0-D62C-4EF6-88CF-96945C4B72D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFsumApp.Modules.Operations", "WPFsumApp.Modules.Operation\WPFsumApp.Modules.Operations.csproj", "{DC6FDB52-97FA-4574-A872-D105CBE6499B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{FE484FF6-FC25-4240-ABE2-45B4CC0E693D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +21,16 @@ Global
 		{B2B63E2D-A829-4DFF-8451-BF33DC4D7417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B63E2D-A829-4DFF-8451-BF33DC4D7417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B63E2D-A829-4DFF-8451-BF33DC4D7417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6FDB52-97FA-4574-A872-D105CBE6499B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6FDB52-97FA-4574-A872-D105CBE6499B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6FDB52-97FA-4574-A872-D105CBE6499B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6FDB52-97FA-4574-A872-D105CBE6499B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC6FDB52-97FA-4574-A872-D105CBE6499B} = {FE484FF6-FC25-4240-ABE2-45B4CC0E693D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35

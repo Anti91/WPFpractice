@@ -6,9 +6,10 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
-using WPFsumApp.Controllers;
+using WPFsumApp.Modules.Operations.Model;
+using WPFsumApp.Modules.Operations;
 
-namespace WPFsumApp.ViewModel
+namespace WPFsumApp.Modules.Operations.ViewModel
 {
     [Export]
     public class OperationViewModel : IDataErrorInfo, INotifyPropertyChanged
@@ -21,9 +22,10 @@ namespace WPFsumApp.ViewModel
 
         [ImportingConstructor]
         public OperationViewModel(
-            UserController userController)
+            //UserController userController
+            )
         {
-            UserController = userController ?? throw new ArgumentNullException(nameof(userController));
+            //UserController = userController ?? throw new ArgumentNullException(nameof(userController));
 
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
@@ -55,7 +57,7 @@ namespace WPFsumApp.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public UserController UserController { get; }
+       // public UserController UserController { get; }
 
         string IDataErrorInfo.Error => null;
 

@@ -1,4 +1,4 @@
-﻿namespace WPFsumApp
+﻿namespace WPFsumApp.Modules.Operations.Model
 {
     public class Operation
     {

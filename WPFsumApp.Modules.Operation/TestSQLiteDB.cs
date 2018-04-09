@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
+using WPFsumApp.Modules.Operations.Model;
 
-namespace WPFsumApp
+namespace WPFsumApp.Modules.Operations
 {
     public class TestSQLiteDB
     {

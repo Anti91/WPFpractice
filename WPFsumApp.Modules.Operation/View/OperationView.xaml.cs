@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using WPFsumApp.ViewModel;
+using WPFsumApp.Modules.Operations.ViewModel;
 
-namespace WPFsumApp.View
+namespace WPFsumApp.Modules.Operations.View
 {
     /// <summary>
     /// Interaction logic for MainView.xaml

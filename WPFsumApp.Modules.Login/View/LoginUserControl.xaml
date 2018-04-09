@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WPFsumApp.View.LoginUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFsumApp.View"
+             xmlns:user="clr-namespace:WPFsumApp.Model"
+             mc:Ignorable="d" Name="UserControl" d:DesignWidth="302" Height="170.333">
+
+    <Border 
+        BorderBrush="Black" 
+        BorderThickness="1"
+        >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition 
+                    Height="0.6*"
+                    />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label 
+                Content="Username:" 
+                Grid.Row="0" 
+                Grid.Column="0"
+                />
+            <ComboBox 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Margin="10" 
+                IsEnabled="{Binding IsLoggedIn, Converter={StaticResource Invers}}" 
+                ItemsSource="{Binding UsersListProperty}" 
+                SelectedItem="{Binding LoggedInUser}"
+                DisplayMemberPath="Name" 
+                >
+
+            </ComboBox>
+            <Button 
+                Content="Login" 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                Margin="24,10,24,10" 
+                IsEnabled="{Binding IsLoggedIn, Converter={StaticResource Invers}}" 
+                Command="{Binding LoginButtonCommand}"
+                />
+            <Button 
+                Content="Exit" 
+                Grid.Row="3" 
+                Grid.Column="0"
+                Margin="24,10,24,10"  
+                IsEnabled="{Binding IsLoggedIn}" 
+                Command="{Binding ExitButtonCommand}"
+                />
+        </Grid>
+    </Border>
+</UserControl>

@@ -5,9 +5,8 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Commands;
 using Prism.Regions;
 using WPFsumApp.Modules.Operations.View;
-using WPFsumApp.View;
 
-namespace WPFsumApp.ViewModel
+namespace WPFsumApp.Modules.Menu.ViewModel
 {
     [Export(typeof(MenuViewModel))]
     public class MenuViewModel
