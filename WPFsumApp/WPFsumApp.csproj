@@ -187,7 +187,7 @@
       <Project>{85054dc0-c4fb-4f2f-9316-e85d9a4b0ac9}</Project>
       <Name>WPFsumApp.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WPFsumApp.Modules.Operation\WPFsumApp.Modules.Operations.csproj">
+    <ProjectReference Include="..\WPFsumApp.Modules.Operations\WPFsumApp.Modules.Operations.csproj">
       <Project>{dc6fdb52-97fa-4574-a872-d105cbe6499b}</Project>
       <Name>WPFsumApp.Modules.Operations</Name>
     </ProjectReference>
