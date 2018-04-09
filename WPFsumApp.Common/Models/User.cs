@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFsumApp.Model
+namespace WPFsumApp.Common.Models
 {
     public class User
     {

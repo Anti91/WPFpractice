@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using Prism.Mvvm;
 using Prism.Regions;
-using WPFsumApp.Controllers;
+using WPFsumApp.Common.Controllers;
 using WPFsumApp.View;
 
 namespace WPFsumApp.ViewModel

@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPFsumApp.View"
-             xmlns:user="clr-namespace:WPFsumApp.Model"
              mc:Ignorable="d" Name="UserControl" d:DesignWidth="302" Height="170.333">
 
     <Border 

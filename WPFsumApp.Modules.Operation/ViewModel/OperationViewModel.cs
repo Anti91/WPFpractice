@@ -6,8 +6,9 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using WPFsumApp.Common.Controllers;
 using WPFsumApp.Modules.Operations.Model;
-using WPFsumApp.Modules.Operations;
+
 
 namespace WPFsumApp.Modules.Operations.ViewModel
 {
@@ -22,10 +23,10 @@ namespace WPFsumApp.Modules.Operations.ViewModel
 
         [ImportingConstructor]
         public OperationViewModel(
-            //UserController userController
+            UserController userController
             )
         {
-            //UserController = userController ?? throw new ArgumentNullException(nameof(userController));
+            UserController = userController ?? throw new ArgumentNullException(nameof(userController));
 
             OperationSymbolList = new ObservableCollection<string>(new List<string>()
             {
@@ -97,7 +98,7 @@ namespace WPFsumApp.Modules.Operations.ViewModel
             get;
             set;
         }
-
+        public object UserController { get; }
         public ObservableCollection<string> OperationSymbolList
         {
             get;

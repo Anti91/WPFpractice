@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Prism.Commands;
-using WPFsumApp.Controllers;
-using WPFsumApp.Model;
+using WPFsumApp.Common.Controllers;
+using WPFsumApp.Common.Models;
 
 namespace WPFsumApp.ViewModel
 {

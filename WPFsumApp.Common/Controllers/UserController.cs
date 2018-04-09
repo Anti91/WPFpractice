@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using Prism.Mvvm;
-using WPFsumApp.Model;
+using WPFsumApp.Common.Models;
 
-namespace WPFsumApp.Controllers
+namespace WPFsumApp.Common.Controllers
 {
     [Export]
     public class UserController : BindableBase

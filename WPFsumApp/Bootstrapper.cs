@@ -3,6 +3,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Windows;
 using Prism.Mef;
 using WPFsumApp.Modules.Operations;
+using WPFsumApp.Common.Controllers;
 
 namespace WPFsumApp
 {
@@ -10,6 +11,7 @@ namespace WPFsumApp
     {
         protected override void ConfigureAggregateCatalog()
         {
+            this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(UserController).Assembly));
             this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(OperationsModule).Assembly));
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
             base.ConfigureAggregateCatalog();
